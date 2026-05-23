@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Beef Gyudon - CookMate</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* VIDEO BG */
+video {
+    position: fixed;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+/* OVERLAY */
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: -1;
+}
+
+/* HEADER */
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    color: white;
+}
+
+.nav-buttons button {
+    background: orange;
+    border: none;
+    padding: 10px 15px;
+    margin-left: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.nav-buttons button:hover {
+    transform: scale(1.05);
+}
+
+/* HERO */
+.hero {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.hero img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.hero-text {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+}
+
+/* CONTENT */
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* CARD */
+.card {
+    background: rgba(255, 255, 255, 0.321);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+/* TYPEWRITER */
+#typeText {
+    border-right: 2px solid white;
+    white-space: normal;
+    word-wrap: break-word;
+    line-height: 1.6;
+}
+
+/* DROPDOWN */
+.dropdown-btn {
+    width: 100%;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.385);
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    margin-top: 10px;
+}
+
+/* INGREDIENT BUTTONS */
+.ing-btn {
+    margin: 5px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 20px;
+    background: orange;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.ing-btn:hover {
+    background: #ff6600;
+    transform: scale(1.05);
+}
+
+.ing-btn a {
+    color: white;
+    text-decoration: none;
+}
+
+/* STEPS */
+.step {
+    padding: 10px;
+    background: rgba(255,255,255,0.1);
+    margin-bottom: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.step:hover {
+    background: rgba(255, 255, 255, 0.458);
+}
+
+.step-detail {
+    display: none;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: rgba(221, 218, 218, 0.39);
+    border-radius: 6px;
+}
+
+/* FOOTER */
+.footer {
+    text-align: center;
+    padding: 20px;
+}
+
+/* SHOP */
+.shop-links a {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px 15px;
+    border-radius: 20px;
+    color: white;
+    text-decoration: none;
+}
+
+.yt-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background: red;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.yt-btn:hover {
+    background: darkred;
+    transform: scale(1.05);
+}
+
+.amazon   { background: #ff9900; }
+.flipkart { background: #2874f0; }
+.bigbasket{ background: #84c225; }
+.blinkit  { background: #f7d000; color: black; }
+.zepto    { background: #6f00ff; }
+.instamart{ background: #fc8019; }
+</style>
+</head>
+
+<body>
+
+<video autoplay muted loop>
+    <source src="/home/pratham/cookmate_wdl/cookmate_images/bg.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
+<div class="header">
+    <h2>🥩 Beef Gyudon</h2>
+    <div class="nav-buttons">
+        <button onclick="goBack()">⬅ Back</button>
+        <button onclick="goHome()">⌘ Home</button>
+    </div>
+</div>
+
+<div class="hero">
+    <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?w=1200&q=80">
+    <div class="hero-text">
+        <h1>Beef Gyudon</h1>
+        <p>Restaurant Style Recipe</p>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- ABOUT -->
+    <div class="card">
+        <h3>About Dish</h3>
+        <p id="typeText"></p>
+    </div>
+
+    <!-- INGREDIENTS -->
+    <div class="card">
+        <h3>Ingredients</h3>
+        <button class="dropdown-btn" onclick="toggleDropdown()">Show Ingredients ⬇</button>
+        <div class="dropdown-content" id="dropdown">
+
+            <button class="ing-btn">
+                <a href="https://blinkit.com/cn/fresh-meat/cid/4/1201?srsltid=AfmBOoo1HYQyLHtRib0LjxggbwzGcKLJa5C2-64zaJRU-SmF87QewH1R" target="_blank">
+                    Beef (thinly sliced)
+                </a>
+            </button>
+
+            <button class="ing-btn">
+                <a href="https://blinkit.com/cn/basmati-rice/cid/16/1164" target="_blank">
+                    Steamed Rice
+                </a>
+            </button>
+
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/onion/prid/391306" target="_blank">
+                    Onion
+                </a>
+            </button>
+
+            <button class="ing-btn">
+                <a href="https://blinkit.com/cn/sauces-spreads/asian-sauces/cid/972/1130" target="_blank">
+                    Soy Sauce
+                </a>
+            </button>
+
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/kikkoman-mirin-sweet-cooking-sauce/prid/510297" target="_blank">
+                    Mirin
+                </a>
+            </button>
+
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/lotus-rice-cooking-wine-vinegar/prid/490333?srsltid=AfmBOorly9PTKqecpeEcHwl5511PeKkXFCUlqxnKeBPEiXUYBWMA9u5a" target="_blank">
+                    Sake / Rice Wine Vinegar
+                </a>
+            </button>
+
+            <button class="ing-btn">
+                <a href="https://blinkit.com/s/?q=SUGAR" target="_blank">
+                    Sugar
+                </a>
+            </button>
+
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/hommade-garlic-paste/prid/35025" target="_blank">
+                    Ginger
+                </a>
+            </button>
+
+            <button class="ing-btn">
+                <a href="https://blinkit.com/cn/eggs/cid/14/1200?srsltid=AfmBOopP7wtlmrDP5aKyNE0lKsyDRqWDXlvL3RFiVZEk824DdZ7YH3eQ" target="_blank">
+                    Egg (soft boiled / raw yolk)
+                </a>
+            </button>
+
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/spring-onion/prid/3926" target="_blank">
+                    Spring Onion
+                </a>
+            </button>
+
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/catch-black-peppercornskali-mirch/prid/187862" target="_blank">
+                    Black Pepper
+                </a>
+            </button>
+
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/tata-salt-vacuum-evaporated-iodised/prid/105" target="_blank">
+                    Salt
+                </a>
+            </button>
+
+        </div>
+    </div>
+
+    <!-- STEPS -->
+    <div class="card">
+        <h3>Steps (Click for details)</h3>
+
+        <div class="step" onclick="toggleDetail(0)">1. Cook the Steamed Rice</div>
+        <div class="step-detail">Wash rice thoroughly until the water runs clear. Cook using a rice cooker or pot with a 1:1.2 ratio of rice to water. Keep warm while preparing the beef topping. Japanese short grain rice is ideal but basmati works well too.</div>
+
+        <div class="step" onclick="toggleDetail(1)">2. Prepare the Gyudon Sauce</div>
+        <div class="step-detail">In a bowl mix together soy sauce, mirin, sake or rice wine vinegar, sugar and a little water. This sweet-savoury tare sauce is the soul of gyudon. Adjust sweetness and saltiness to your taste.</div>
+
+        <div class="step" onclick="toggleDetail(2)">3. Cook the Onions</div>
+        <div class="step-detail">Heat a pan over medium heat. Add a little oil. Add thinly sliced onion and cook for 4–5 minutes until softened and lightly golden. Add grated ginger and cook for 1 more minute until fragrant.</div>
+
+        <div class="step" onclick="toggleDetail(3)">4. Add the Sauce</div>
+        <div class="step-detail">Pour the prepared gyudon sauce over the cooked onions. Stir well and bring to a gentle simmer. Let it cook for 2–3 minutes so the onions absorb all the sweet and savoury flavours of the sauce.</div>
+
+        <div class="step" onclick="toggleDetail(4)">5. Cook the Beef</div>
+        <div class="step-detail">Add the thinly sliced beef into the simmering sauce and onions. Spread the slices evenly and cook on medium heat for 2–3 minutes until the beef is just cooked through and has absorbed the sauce. Do not overcook or the beef will toughen.</div>
+
+        <div class="step" onclick="toggleDetail(5)">6. Soft Boil the Egg</div>
+        <div class="step-detail">Bring water to boil. Gently lower the egg and cook for exactly 6–7 minutes for a soft runny yolk. Transfer immediately to cold water. Peel carefully. The soft yolk adds a rich creamy element when broken over the hot gyudon.</div>
+
+        <div class="step" onclick="toggleDetail(6)">7. Assemble & Serve</div>
+        <div class="step-detail">Scoop steamed rice into a bowl. Ladle the beef and onion mixture generously on top with all the sauce. Place the soft boiled egg on top. Garnish with sliced spring onion greens and a pinch of black pepper. Serve immediately.</div>
+
+    </div>
+
+</div>
+
+<div class="footer">
+    <h3>Order Ingredients</h3>
+    <div class="shop-links">
+        <a href="https://www.amazon.in" class="amazon">Amazon</a>
+        <a href="https://www.flipkart.com" class="flipkart">Flipkart</a>
+        <a href="https://www.bigbasket.com" class="bigbasket">BigBasket</a>
+        <a href="https://blinkit.com" class="blinkit">Blinkit</a>
+        <a href="https://www.zeptonow.com" class="zepto">Zepto</a>
+        <a href="https://www.swiggy.com/instamart" class="instamart">Instamart</a>
+    </div>
+</div>
+
+<!-- YOUTUBE LINK -->
+<div class="card" style="max-width:1000px; margin: 0 auto 20px;">
+    <h3>Watch Recipe 🎥</h3>
+    <a href="https://www.youtube.com/watch?v=osG3R8WWonc" target="_blank" class="yt-btn">
+        ▶ Watch Beef Gyudon Recipe on YouTube
+    </a>
+</div>
+
+<script>
+function goBack() {
+    window.location.href = "/home/pratham/cookmate_wdl/nonvegg/japanese_nonveg.html";
+}
+function goHome() {
+    window.location.href = "/home/pratham/cookmate_wdl/initials/cookmate_f.html ";
+}
+
+function toggleDropdown() {
+    let d = document.getElementById("dropdown");
+    d.style.display = d.style.display === "block" ? "none" : "block";
+}
+
+function toggleDetail(index) {
+    let details = document.getElementsByClassName("step-detail");
+    details[index].style.display =
+        details[index].style.display === "block" ? "none" : "block";
+}
+
+/* TYPEWRITER */
+const text = "Beef Gyudon is a classic Japanese comfort dish featuring tender thinly sliced beef and sweet onions simmered in a rich soy-mirin sauce, served over a warm bowl of steamed rice and topped with a soft boiled egg. Simple yet deeply satisfying, it is one of Japan's most beloved and iconic everyday meals.";
+let i = 0;
+
+function typeWriter() {
+    if (i < text.length) {
+        document.getElementById("typeText").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 25);
+    }
+}
+typeWriter();
+</script>
+
+</body>
+</html>

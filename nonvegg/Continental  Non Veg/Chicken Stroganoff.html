@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Chicken Stroganoff - CookMate</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* VIDEO BG */
+video {
+    position: fixed;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+/* OVERLAY */
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: -1;
+}
+
+/* HEADER */
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    color: white;
+}
+
+.nav-buttons button {
+    background: orange;
+    border: none;
+    padding: 10px 15px;
+    margin-left: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.nav-buttons button:hover {
+    transform: scale(1.05);
+}
+
+/* HERO */
+.hero {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.hero img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.hero-text {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+}
+
+/* CONTENT */
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* CARD */
+.card {
+    background: rgba(255, 255, 255, 0.321);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+/* TYPEWRITER */
+#typeText {
+    border-right: 2px solid white;
+    white-space: normal;
+    word-wrap: break-word;
+    line-height: 1.6;
+}
+
+/* DROPDOWN */
+.dropdown-btn {
+    width: 100%;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.385);
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    margin-top: 10px;
+}
+
+/* INGREDIENT BUTTONS */
+.ing-btn {
+    margin: 5px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 20px;
+    background: orange;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.ing-btn:hover {
+    background: #ff6600;
+    transform: scale(1.05);
+}
+
+.ing-btn a {
+    color: white;
+    text-decoration: none;
+}
+
+/* STEPS */
+.step {
+    padding: 10px;
+    background: rgba(255,255,255,0.1);
+    margin-bottom: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.step:hover {
+    background: rgba(255, 255, 255, 0.458);
+}
+
+.step-detail {
+    display: none;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: rgba(221, 218, 218, 0.39);
+    border-radius: 6px;
+}
+
+/* FOOTER */
+.footer {
+    text-align: center;
+    padding: 20px;
+}
+
+/* SHOP */
+.shop-links a {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px 15px;
+    border-radius: 20px;
+    color: white;
+    text-decoration: none;
+}
+
+.yt-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background: red;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.yt-btn:hover {
+    background: darkred;
+    transform: scale(1.05);
+}
+
+.amazon   { background: #ff9900; }
+.flipkart { background: #2874f0; }
+.bigbasket{ background: #84c225; }
+.blinkit  { background: #f7d000; color: black; }
+.zepto    { background: #6f00ff; }
+.instamart{ background: #fc8019; }
+</style>
+</head>
+
+<body>
+
+<video autoplay muted loop>
+    <source src="/home/pratham/cookmate_wdl/cookmate_images/bg.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
+<div class="header">
+    <h2>🍗 Chicken Stroganoff</h2>
+    <div class="nav-buttons">
+        <button onclick="goBack()">⬅ Back</button>
+        <button onclick="goHome()">⌘ Home</button>
+    </div>
+</div>
+
+<div class="hero">
+    <img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=1200&q=80">
+    <div class="hero-text">
+        <h1>Chicken Stroganoff</h1>
+        <p>Restaurant Style Recipe</p>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- ABOUT -->
+    <div class="card">
+        <h3>About Dish</h3>
+        <p id="typeText"></p>
+    </div>
+
+    <!-- INGREDIENTS -->
+    <div class="card">
+        <h3>Ingredients</h3>
+        <button class="dropdown-btn" onclick="toggleDropdown()">Show Ingredients ⬇</button>
+        <div class="dropdown-content" id="dropdown">
+
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/abis-pro-chicken-curry-cut/prid/690207" target="_blank">
+                    Chicken Breast
+                </a>
+            </button>
+
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/onion/prid/391306" target="_blank">
+                    Onion
+                </a>
+            </button>
+
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/hommade-garlic-paste/prid/35025" target="_blank">
+                    Garlic
+                </a>
+            </button>
+
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/button-mushroom/prid/253317?srsltid=AfmBOor2qdXu3K_LgqaTJmypJosfAwwUbhWiFbz8KAg9gqbJNeCwAtPm" target="_blank">
+                    Mushrooms
+                </a>
+            </button>
+
+            <button class="ing-btn">
+                <a href="https://blinkit.com/cn/cream-whitener/cid/14/1092" target="_blank">
+                    Sour Cream / Fresh Cream
+                </a>
+            </button>
+
+            <button class="ing-btn">
+                <a href="https://blinkit.com/cn/butter-more/cid/14/952" target="_blank">
+                    Butter
+                </a>
+            </button>
+
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/figaro-extra-virgin-olive-oil/prid/9349" target="_blank">
+                    Olive Oil
+                </a>
+            </button>
+
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/colavita-white-wine-vinegar/prid/103091" target="_blank">
+                    White Wine / Chicken Stock
+                </a>
+            </button>
+
+            <button class="ing-btn">
+                <a href="https://blinkit.com/cn/maida/cid/16/1483" target="_blank">
+                    Flour
+                </a>
+            </button>
+
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/catch-black-peppercornskali-mirch/prid/187862" target="_blank">
+                    Black Pepper
+                </a>
+            </button>
+
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/combo-of-4-basil-leaves-hydroponically-grown-25-g-mint-leaves-without-roots-100-g-parsley-50-g-rosemary-20-g/prid/540241" target="_blank">
+                    Fresh Parsley
+                </a>
+            </button>
+
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/tata-salt-vacuum-evaporated-iodised/prid/105" target="_blank">
+                    Salt
+                </a>
+            </button>
+
+        </div>
+    </div>
+
+    <!-- STEPS -->
+    <div class="card">
+        <h3>Steps (Click for details)</h3>
+
+        <div class="step" onclick="toggleDetail(0)">1. Prepare the Chicken</div>
+        <div class="step-detail">Cut chicken breast into thin strips about 1 cm wide. Season generously with salt and black pepper. Dust lightly with flour and toss to coat evenly. The flour coating helps the chicken brown beautifully and also thickens the sauce.</div>
+
+        <div class="step" onclick="toggleDetail(1)">2. Sear the Chicken</div>
+        <div class="step-detail">Heat olive oil and butter in a wide pan over high heat. Add the chicken strips in a single layer — do not crowd the pan. Sear for 2–3 minutes on each side until golden brown. Remove and set aside. Searing in batches if needed ensures browning not steaming.</div>
+
+        <div class="step" onclick="toggleDetail(2)">3. Sauté Onion & Garlic</div>
+        <div class="step-detail">In the same pan reduce heat to medium. Add a little more butter. Add finely chopped onion and cook for 3–4 minutes until softened and translucent. Add minced garlic and cook for 1 minute until fragrant.</div>
+
+        <div class="step" onclick="toggleDetail(3)">4. Cook the Mushrooms</div>
+        <div class="step-detail">Add sliced mushrooms to the pan. Cook on medium-high heat for 4–5 minutes until the mushrooms release their moisture and turn golden brown. Do not stir too much — let them brown properly for the best flavour.</div>
+
+        <div class="step" onclick="toggleDetail(4)">5. Deglaze & Make the Sauce</div>
+        <div class="step-detail">Pour in white wine or chicken stock and scrape up all the browned bits from the bottom of the pan — these add incredible depth of flavour. Let it bubble for 2 minutes to reduce slightly. Reduce heat to low.</div>
+
+        <div class="step" onclick="toggleDetail(5)">6. Add Cream & Chicken</div>
+        <div class="step-detail">Stir in sour cream or fresh cream. Mix gently until the sauce is smooth and creamy. Return the seared chicken strips to the pan. Toss everything together and simmer on low heat for 5 minutes until the chicken is cooked through and the sauce coats everything beautifully.</div>
+
+        <div class="step" onclick="toggleDetail(6)">7. Garnish & Serve</div>
+        <div class="step-detail">Season with extra salt and black pepper to taste. Garnish with freshly chopped parsley. Serve hot over egg noodles, steamed rice, mashed potatoes or with crusty garlic bread on the side.</div>
+
+    </div>
+
+</div>
+
+<div class="footer">
+    <h3>Order Ingredients</h3>
+    <div class="shop-links">
+        <a href="https://www.amazon.in" class="amazon">Amazon</a>
+        <a href="https://www.flipkart.com" class="flipkart">Flipkart</a>
+        <a href="https://www.bigbasket.com" class="bigbasket">BigBasket</a>
+        <a href="https://blinkit.com" class="blinkit">Blinkit</a>
+        <a href="https://www.zeptonow.com" class="zepto">Zepto</a>
+        <a href="https://www.swiggy.com/instamart" class="instamart">Instamart</a>
+    </div>
+</div>
+
+<!-- YOUTUBE LINK -->
+<div class="card" style="max-width:1000px; margin: 0 auto 20px;">
+    <h3>Watch Recipe 🎥</h3>
+    <a href="https://www.youtube.com/results?search_query=Chicken+Stroganoff" target="_blank" class="yt-btn">
+        ▶ Watch Chicken Stroganoff Recipe on YouTube
+    </a>
+</div>
+
+<script>
+function goHome() {
+    window.location.href = "/home/pratham/cookmate_wdl/initials/cookmate_f.html ";
+}
+function goBack() {
+    window.location.href = "/home/pratham/cookmate_wdl/nonvegg/Continental  Non Veg.html";
+}
+
+
+function toggleDropdown() {
+    let d = document.getElementById("dropdown");
+    d.style.display = d.style.display === "block" ? "none" : "block";
+}
+
+function toggleDetail(index) {
+    let details = document.getElementsByClassName("step-detail");
+    details[index].style.display =
+        details[index].style.display === "block" ? "none" : "block";
+}
+
+/* TYPEWRITER */
+const text = "Chicken Stroganoff is a rich and creamy continental dish featuring golden pan-seared chicken strips and earthy mushrooms simmered in a velvety sour cream sauce. A flavourful twist on the classic Russian Beef Stroganoff, this chicken version is equally indulgent and comforting — perfect served over noodles, rice or mashed potatoes.";
+let i = 0;
+
+function typeWriter() {
+    if (i < text.length) {
+        document.getElementById("typeText").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 25);
+    }
+}
+typeWriter();
+</script>
+
+</body>
+</html>

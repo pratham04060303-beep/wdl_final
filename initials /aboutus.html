@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Contact Us - CookMate</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body, html {
+    height: 100%;
+}
+
+/* Background video */
+video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+/* Overlay */
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: -1;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    color: white;
+}
+
+.back-btn {
+    padding: 10px 15px;
+    border: none;
+    background: orange;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.home-btn {
+    padding: 10px 15px;
+    border: none;
+    background: orange;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.home-btn:hover { transform: scale(1.05); }
+.back-btn:hover { transform: scale(1.05); }
+
+.nav-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+/* HERO */
+.hero {
+    position: relative;
+    height: 220px;
+    background: url("https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=80") center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.55);
+    top: 0;
+    left: 0;
+}
+
+.hero-content {
+    position: relative;
+    color: white;
+    text-align: center;
+    z-index: 2;
+}
+
+.hero-content h1 {
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.hero-content p {
+    font-size: 14px;
+    margin-top: 8px;
+    color: rgba(255,255,255,0.8);
+}
+
+/* MAIN CONTENT */
+.contact-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 40px 30px 60px;
+}
+
+/* PERSON CARD */
+.person-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 16px;
+    padding: 30px;
+    width: 340px;
+    color: white;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s;
+}
+
+.person-card:hover {
+    transform: translateY(-5px);
+}
+
+.avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: orange;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin-bottom: 16px;
+}
+
+.person-card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.person-card .role {
+    font-size: 12px;
+    color: orange;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.info-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 14px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.85);
+}
+
+.info-row .icon {
+    font-size: 18px;
+    min-width: 24px;
+    margin-top: 1px;
+}
+
+.info-row a {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    word-break: break-all;
+}
+
+.info-row a:hover {
+    color: orange;
+}
+
+/* SHARED INFO CARD */
+.shared-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 16px;
+    padding: 30px;
+    width: 100%;
+    max-width: 740px;
+    color: white;
+    backdrop-filter: blur(10px);
+}
+
+.shared-card h2 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: orange;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.info-row .label {
+    font-weight: 600;
+    color: white;
+    display: block;
+    margin-bottom: 2px;
+}
+
+/* SOCIAL BUTTONS */
+.social-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 6px;
+}
+
+.social-btn {
+    padding: 8px 18px;
+    border-radius: 8px;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.social-btn:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+.github-btn  { background: #24292e; color: white; }
+.linkedin-btn { background: #0077b5; color: white; }
+
+/* divider */
+.divider {
+    width: 100%;
+    max-width: 740px;
+    text-align: center;
+    color: rgba(255,255,255,0.3);
+    font-size: 13px;
+    padding-bottom: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Background Video -->
+<video autoplay muted loop>
+    <source src="/home/pratham/cookmate_wdl/cookmate_images/bg.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
+<!-- Header -->
+<div class="header">
+    <h2>Contact Us 📬</h2>
+    <div class="nav-buttons">
+        <button class="back-btn" onclick="goBack()">⬅ Back</button>
+        <button class="home-btn" onclick="goback()">⌘ Home</button>
+    </div>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+    <div class="hero-content">
+        <h1>Get In Touch 🍳</h1>
+        <p>Have a question or feedback? We'd love to hear from you!</p>
+    </div>
+</div>
+
+<!-- Contact Content -->
+<div class="contact-wrapper">
+    <!-- Person 2 -->
+        <div class="person-card">
+        <div class="avatar" style="width:90px;height:90px;border-radius:50%;overflow:hidden;border:3px solid orange;background:none;">
+            <img src="/home/pratham/cookmate_wdl/cookmate_images/pi.jpg" alt="Hariom Dugale" style="width:100%;height:100%;object-fit:cover;object-position:top;">
+        </div>
+        <h2>Piyush J Patil</h2>
+        <div class="role">Developer & Founder</div>
+
+        <div class="info-row">
+            <span class="icon">📧</span>
+            <a href="mailto:piyushpatil3397@gmail.com">piyushpatil3397@gmail.com</a>
+        </div>
+
+        <div class="info-row">
+            <span class="icon">📞</span>
+            <a href="tel:+919270346719">+91 92703 46719</a>
+        </div>
+    </div>
+    <!-- Person 1 -->
+    <div class="person-card">
+        <div class="avatar" style="width:90px;height:90px;border-radius:50%;overflow:hidden;border:3px solid orange;background:none;">
+            <img src="/home/pratham/cookmate_wdl/cookmate_images/h.jpg" alt="Hariom Dugale" style="width:100%;height:100%;object-fit:cover;object-position:top;">
+        </div>
+        <div class="avatar">👨‍💻</div>
+        <h2>Hariom Dugale</h2>
+        <div class="role">Developer & Co-Founder</div>
+
+        <div class="info-row">
+            <span class="icon">📧</span>
+            <a href="mailto:hariomdugale@gmail.com">hariomdugale@gmail.com</a>
+        </div>
+
+        <div class="info-row">
+            <span class="icon">📞</span>
+            <a href="tel:+918261812933">+91 82618 12933</a>
+        </div>
+    </div>
+
+    <!-- Person 2 -->
+    <div class="person-card">
+        <div class="avatar" style="width:90px;height:90px;border-radius:50%;overflow:hidden;border:3px solid orange;background:none;">
+            <img src="/home/pratham/cookmate_wdl/cookmate_images/p.jpg" alt="Hariom Dugale" style="width:100%;height:100%;object-fit:cover;object-position:top;">
+        </div>
+        <div class="avatar">👨‍💻</div>
+        <h2>Pratham</h2>
+        <div class="role">Developer & Co-Founder</div>
+
+        <div class="info-row">
+            <span class="icon">📧</span>
+            <a href="mailto:pratham04060303@gmail.com">pratham04060303@gmail.com</a>
+        </div>
+
+        <div class="info-row">
+            <span class="icon">📞</span>
+            <a href="tel:+917410755344">+91 74107 55344</a>
+        </div>
+    </div>
+
+    <!-- Shared Info -->
+    <div class="shared-card">
+        <h2>📍 Our Address</h2>
+        <div class="info-row">
+            <span class="icon">🏫</span>
+            <span>
+                Boys Hostel No. 4 (New Boys Hostel),<br>
+                Pimpri Chinchwad College of Engineering (PCCOE),<br>
+                Sector No. 26, Pradhikaran, Nigdi,<br>
+                Pimpri-Chinchwad, Pune, Maharashtra – 411044
+            </span>
+        </div>
+    </div>
+
+    <!-- Social Links -->
+    <div class="shared-card">
+        <h2>🔗 Find Us Online</h2>
+        <div class="info-row">
+            <span class="icon">💻</span>
+            <div>
+                <span class="label">GitHub Repository</span>
+                <div class="social-row">
+                    <a class="social-btn github-btn" href="https://github.com/hariomdugale-jpg/cookmate.git" target="_blank">
+                        ⭐ GitHub – CookMate
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-row" style="margin-top: 16px;">
+            <span class="icon">🔗</span>
+            <div>
+                <span class="label">LinkedIn</span>
+                <div class="social-row">
+                    <a class="social-btn linkedin-btn" href="https://www.linkedin.com/in/hariom-ugale-34bab0388" target="_blank">
+                        in LinkedIn – Hariom Ugale
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="divider">© 2025 CookMate · Made with ❤️ by Hariom & Pratham</div>
+
+</div>
+
+<script>
+function goback() {
+    window.location.href = "cookmate_f.html";
+}
+function goBack() {
+    window.location.href = "cookmate_f.html";
+}
+</script>
+
+</body>
+</html>

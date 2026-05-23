@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Veg Cuisines</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================
+   GLOBAL STYLING
+========================= */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body, html{
+    height: 100%;
+}
+
+/* =========================
+   BACKGROUND VIDEO
+========================= */
+video{
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+/* Dark transparent overlay */
+.overlay{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: -1;
+}
+
+/* =========================
+   HEADER
+========================= */
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    color: white;
+}
+
+/* Navigation buttons container */
+.nav-buttons{
+    display: flex;
+    gap: 10px;
+}
+
+/* Back button */
+.back-btn{
+    padding: 10px 15px;
+    border: none;
+    background: orange;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+/* Home button */
+.home-btn{
+    padding: 10px 15px;
+    border: none;
+    background: orange;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+/* Hover effects */
+.back-btn:hover,
+.home-btn:hover{
+    transform: scale(1.05);
+}
+
+/* =========================
+   GRID LAYOUT
+========================= */
+.grid{
+    display: grid;
+
+    /* 4 columns */
+    grid-template-columns: repeat(4, 1fr);
+
+    /* spacing between tiles */
+    gap: 30px;
+
+    /* spacing around grid */
+    padding: 30px 50px;
+}
+
+/* =========================
+   TILE DESIGN
+========================= */
+.tile{
+    position: relative;
+    height: 200px;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Tile image */
+.tile img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Dark overlay on image */
+.tile::after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    top: 0;
+    left: 0;
+}
+
+/* Cuisine name */
+.tile span{
+    position: absolute;
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    z-index: 2;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+/* Hover effect */
+.tile:hover{
+    transform: scale(1.05);
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+/* Tablet */
+@media(max-width: 900px){
+
+    .grid{
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+/* Mobile */
+@media(max-width: 600px){
+
+    .grid{
+        grid-template-columns: 1fr;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     BACKGROUND VIDEO
+========================= -->
+<video autoplay muted loop>
+    <source src="/home/pratham/cookmate_wdl/cookmate_images/bg.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
+<!-- =========================
+     HEADER
+========================= -->
+<div class="header">
+
+    <h2>Choose Cuisine 🌱</h2>
+
+    <!-- Navigation Buttons -->
+    <div class="nav-buttons">
+
+        <!-- Back Button -->
+        <button class="back-btn" onclick="goBack()">
+            ⬅ Back
+        </button>
+
+        <!-- Home Button -->
+        <button class="home-btn" onclick="goHome()">
+           ⌘ Home
+        </button>
+
+    </div>
+
+</div>
+
+<!-- =========================
+     CUISINE GRID
+========================= -->
+<div class="grid">
+
+    <!-- Indian -->
+    <div class="tile" onclick="go('/home/pratham/cookmate_wdl/vegg/indian.html')">
+        <img src="/home/pratham/cookmate_wdl/cookmate_images/1.png" alt="Indian Cuisine">
+        <span>Indian</span>
+    </div>
+
+    <!-- Italian -->
+    <div class="tile" onclick="go('/home/pratham/cookmate_wdl/vegg/italian.html')">
+        <img src="/home/pratham/cookmate_wdl/cookmate_images/2.png" alt="Italian Cuisine">
+        <span>Italian</span>
+    </div>
+
+    <!-- Chinese -->
+    <div class="tile" onclick="go('/home/pratham/cookmate_wdl/vegg/chinese.html')">
+        <img src="/home/pratham/cookmate_wdl/cookmate_images/3.png" alt="Chinese Cuisine">
+        <span>Chinese</span>
+    </div>
+
+    <!-- Mexican -->
+    <div class="tile" onclick="go('/home/pratham/cookmate_wdl/vegg/mexican.html')">
+        <img src="/home/pratham/cookmate_wdl/cookmate_images/4.png" alt="Mexican Cuisine">
+        <span>Mexican</span>
+    </div>
+
+    <!-- Thai -->
+    <div class="tile" onclick="go('/home/pratham/cookmate_wdl/vegg/thai.html')">
+        <img src="/home/pratham/cookmate_wdl/cookmate_images/5.png" alt="Thai Cuisine">
+        <span>Thai</span>
+    </div>
+
+    <!-- Continental -->
+    <div class="tile" onclick="go('/home/pratham/cookmate_wdl/vegg/continental.html')">
+        <img src="/home/pratham/cookmate_wdl/cookmate_images/6.png" alt="Continental Cuisine">
+        <span>Continental</span>
+    </div>
+
+    <!-- South Indian -->
+    <div class="tile" onclick="go('/home/pratham/cookmate_wdl/vegg/southindian.html')">
+        <img src="/home/pratham/cookmate_wdl/cookmate_images/7.png" alt="South Indian Cuisine">
+        <span>South Indian</span>
+    </div>
+
+    <!-- Street Food -->
+    <div class="tile" onclick="go('/home/pratham/cookmate_wdl/vegg/streetfood.html')">
+        <img src="/home/pratham/cookmate_wdl/cookmate_images/8.png" alt="Street Food">
+        <span>Street Food</span>
+    </div>
+
+    <!-- Desserts -->
+    <div class="tile" onclick="go('/home/pratham/cookmate_wdl/vegg/Desserts.html')">
+        <img src="/home/pratham/cookmate_wdl/cookmate_images/9.png" alt="Desserts">
+        <span>Desserts</span>
+    </div>
+
+   
+
+    
+
+    
+
+</div>
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+<script>
+
+/* Home Button */
+function goHome(){
+    window.location.href = "cookmate_f.html";
+}
+
+/* Back Button */
+function goBack(){
+    window.location.href = "cookmate_f.html";
+}
+
+/* Cuisine Navigation */
+function go(page){
+    window.location.href = page;
+}
+
+</script>
+
+</body>
+</html>

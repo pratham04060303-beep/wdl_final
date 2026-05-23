@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Beef Chimichanga - CookMate</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+video {
+    position: fixed;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: -1;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    color: white;
+}
+
+.nav-buttons button {
+    background: orange;
+    border: none;
+    padding: 10px 15px;
+    margin-left: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.nav-buttons button:hover {
+    transform: scale(1.05);
+}
+
+.hero {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.hero img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.hero-text {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.321);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+#typeText {
+    border-right: 2px solid white;
+    white-space: normal;
+    word-wrap: break-word;
+    line-height: 1.6;
+}
+
+.dropdown-btn {
+    width: 100%;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.385);
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    margin-top: 10px;
+}
+
+.ing-btn {
+    margin: 5px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 20px;
+    background: orange;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.ing-btn:hover {
+    background: #ff6600;
+    transform: scale(1.05);
+}
+
+.ing-btn a {
+    color: white;
+    text-decoration: none;
+}
+
+.step {
+    padding: 10px;
+    background: rgba(255,255,255,0.1);
+    margin-bottom: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.step:hover {
+    background: rgba(255, 255, 255, 0.458);
+}
+
+.step-detail {
+    display: none;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: rgba(221, 218, 218, 0.39);
+    border-radius: 6px;
+}
+
+.footer {
+    text-align: center;
+    padding: 20px;
+}
+
+.shop-links a {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px 15px;
+    border-radius: 20px;
+    color: white;
+    text-decoration: none;
+}
+
+.yt-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background: red;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.yt-btn:hover {
+    background: darkred;
+    transform: scale(1.05);
+}
+
+.amazon   { background: #ff9900; }
+.flipkart { background: #2874f0; }
+.bigbasket{ background: #84c225; }
+.blinkit  { background: #f7d000; color: black; }
+.zepto    { background: #6f00ff; }
+.instamart{ background: #fc8019; }
+</style>
+</head>
+
+<body>
+
+<video autoplay muted loop>
+    <source src="/home/pratham/cookmate_wdl/cookmate_images/bg.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
+<div class="header">
+    <h2>🌮 Beef Chimichanga</h2>
+    <div class="nav-buttons">
+        <button onclick="goBack()">⬅ Back</button>
+        <button onclick="goHome()">⌘ Home</button>
+    </div>
+</div>
+
+<div class="hero">
+    <img src="https://media-cdn.tripadvisor.com/media/photo-s/1a/55/f1/0c/beef-chimichanga-enchilada.jpg">
+    <div class="hero-text">
+        <h1>Beef Chimichanga</h1>
+        <p>Restaurant Style Recipe</p>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- ABOUT -->
+    <div class="card">
+        <h3>About Dish</h3>
+        <p id="typeText"></p>
+    </div>
+
+    <!-- INGREDIENTS -->
+    <div class="card">
+        <h3>Ingredients</h3>
+        <button class="dropdown-btn" onclick="toggleDropdown()">Show Ingredients ⬇</button>
+        <div class="dropdown-content" id="dropdown">
+
+            <!-- Beef — reused from Burrito -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/cn/fresh-meat/cid/4/1201?srsltid=AfmBOoqncPhOrvJhVegNdZ9IaWbetB3gqb7pkIB6ZMBXmh2djMPYKGRD" target="_blank">
+                    Beef (Minced)
+                </a>
+            </button>
+
+            <!-- Flour Tortillas — reused from Burrito -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/habanero-flour-tortilla-wraps-ready-to-eat/prid/481564?srsltid=AfmBOoqrLPmFA9__7wPqVunporSc7IgVtmyahetKb_yMAPUdBSSl-ic1" target="_blank">
+                    Flour Tortillas
+                </a>
+            </button>
+
+            <!-- Onion — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/onion/prid/391306" target="_blank">
+                    Onion
+                </a>
+            </button>
+
+            <!-- Garlic — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/hommade-garlic-paste/prid/35025" target="_blank">
+                    Garlic
+                </a>
+            </button>
+
+            <!-- Tomato Salsa — reused from Burrito -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/the-gourmet-jar-fresh-tomato-salsa/prid/657872?srsltid=AfmBOood9-u5X_kmF8WlRYgrzJHT7gZhfvj6uJjMKOGaSnk595SC-O1o" target="_blank">
+                    Tomato Salsa
+                </a>
+            </button>
+
+            <!-- Chilli Flakes — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/catch-red-chilli-powder/prid/18854" target="_blank">
+                    Chilli Flakes / Red Chilli Powder
+                </a>
+            </button>
+
+            <!-- Cumin — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/everest-jeera-powder-cumin-powder/prid/63?srsltid=AfmBOoov2ao0nMO5EQQL56MstIHQ4Sfhw79rZ9VE0v5GGxbzX3JEtDC_" target="_blank">
+                    Cumin Powder
+                </a>
+            </button>
+
+            <!-- Salt — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/tata-salt-vacuum-evaporated-iodised/prid/105?srsltid=AfmBOor1fqU4Wwj8bb49x4IcSy9kFnn2V-aHLlxX6x1Bxquvbc8ukWgB" target="_blank">
+                    Salt
+                </a>
+            </button>
+
+            <!-- Cheese — reused from Chicken Pizza -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/go-mozzarella-cheese-block/prid/26248" target="_blank">
+                    Cheddar / Mozzarella Cheese
+                </a>
+            </button>
+
+            <!-- Sour Cream — reused from Burrito -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/epigamia-sour-cream/prid/436682" target="_blank">
+                    Sour Cream
+                </a>
+            </button>
+
+            <!-- Olive Oil for frying — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/figaro-extra-virgin-olive-oil/prid/9349" target="_blank">
+                    Oil (for frying)
+                </a>
+            </button>
+
+        </div>
+    </div>
+
+    <!-- STEPS -->
+    <div class="card">
+        <h3>Steps (Click for details)</h3>
+
+        <div class="step" onclick="toggleDetail(0)">1. Cook the Beef Filling</div>
+        <div class="step-detail">Heat a little oil in a pan over high heat. Add minced beef and cook for 6–8 minutes, breaking it up, until fully browned. Add chopped onion and garlic and cook for 3 more minutes. Season with cumin, chilli flakes and salt. Stir in the tomato salsa and simmer for 5 minutes until thick and dry. Let it cool slightly.</div>
+
+        <div class="step" onclick="toggleDetail(1)">2. Warm the Tortillas</div>
+        <div class="step-detail">Warm the flour tortillas in a dry pan for 20–30 seconds per side until soft and pliable. Warm tortillas are essential — they will crack if folded cold.</div>
+
+        <div class="step" onclick="toggleDetail(2)">3. Fill & Wrap</div>
+        <div class="step-detail">Lay a warm tortilla flat. Place a generous spoonful of beef filling in the centre. Top with shredded cheese. Fold the sides in, then roll tightly from the bottom up like a burrito. Secure with a toothpick if needed to hold the shape during frying.</div>
+
+        <div class="step" onclick="toggleDetail(3)">4. Fry the Chimichanga</div>
+        <div class="step-detail">Heat oil in a deep pan to 180°C. Carefully lower the wrapped chimichanga seam-side down into the oil. Fry for 2–3 minutes per side until deep golden brown and crispy all over. Drain on paper towels. Alternatively, brush with oil and bake at 200°C for 20 minutes, flipping halfway.</div>
+
+        <div class="step" onclick="toggleDetail(4)">5. Serve</div>
+        <div class="step-detail">Remove the toothpick. Place the chimichanga on a plate and top with a dollop of sour cream and a spoonful of salsa. Serve immediately while hot and crispy. Garnish with fresh coriander if available.</div>
+
+    </div>
+
+</div>
+
+<div class="footer">
+    <h3>Order Ingredients</h3>
+    <div class="shop-links">
+        <a href="https://www.amazon.in" class="amazon">Amazon</a>
+        <a href="https://www.flipkart.com" class="flipkart">Flipkart</a>
+        <a href="https://www.bigbasket.com" class="bigbasket">BigBasket</a>
+        <a href="https://blinkit.com" class="blinkit">Blinkit</a>
+        <a href="https://www.zeptonow.com" class="zepto">Zepto</a>
+        <a href="https://www.swiggy.com/instamart" class="instamart">Instamart</a>
+    </div>
+</div>
+
+<!-- YOUTUBE LINK -->
+<div class="card" style="max-width:1000px; margin: 0 auto 20px;">
+    <h3>Watch Recipe 🎥</h3>
+    <a href="https://www.youtube.com/watch?v=QMxee4mho38" target="_blank" class="yt-btn">
+        ▶ Watch Beef Chimichanga Recipe on YouTube
+    </a>
+</div>
+
+<script>
+function goHome() {
+    window.location.href = "/home/pratham/cookmate_wdl/initials/cookmate_f.html ";
+}
+function goBack() {
+    window.location.href = "/home/pratham/cookmate_wdl/nonvegg/Mexican Non-Veg.html";
+}
+
+function toggleDropdown() {
+    let d = document.getElementById("dropdown");
+    d.style.display = d.style.display === "block" ? "none" : "block";
+}
+
+function toggleDetail(index) {
+    let details = document.getElementsByClassName("step-detail");
+    details[index].style.display =
+        details[index].style.display === "block" ? "none" : "block";
+}
+
+/* TYPEWRITER */
+const text = "Beef Chimichanga is a crispy deep-fried Mexican burrito loaded with spiced minced beef, melted cheese and tangy salsa, sealed inside a golden flour tortilla. Crunchy on the outside and juicy on the inside, it is a bold, satisfying dish best served hot with cool sour cream on top.";
+let i = 0;
+
+function typeWriter() {
+    if (i < text.length) {
+        document.getElementById("typeText").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 25);
+    }
+}
+typeWriter();
+</script>
+
+</body>
+</html>

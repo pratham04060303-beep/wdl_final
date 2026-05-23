@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Chicken Tamales - CookMate</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* VIDEO BG */
+video {
+    position: fixed;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+/* OVERLAY */
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: -1;
+}
+
+/* HEADER */
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    color: white;
+}
+
+.nav-buttons button {
+    background: orange;
+    border: none;
+    padding: 10px 15px;
+    margin-left: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.nav-buttons button:hover {
+    transform: scale(1.05);
+}
+
+/* HERO */
+.hero {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.hero img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.hero-text {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+}
+
+/* CONTENT */
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* CARD */
+.card {
+    background: rgba(255, 255, 255, 0.321);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+/* TYPEWRITER */
+#typeText {
+    border-right: 2px solid white;
+    white-space: normal;
+    word-wrap: break-word;
+    line-height: 1.6;
+}
+
+/* DROPDOWN */
+.dropdown-btn {
+    width: 100%;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.385);
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    margin-top: 10px;
+}
+
+/* INGREDIENT BUTTONS */
+.ing-btn {
+    margin: 5px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 20px;
+    background: orange;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.ing-btn:hover {
+    background: #ff6600;
+    transform: scale(1.05);
+}
+
+.ing-btn a {
+    color: white;
+    text-decoration: none;
+}
+
+/* STEPS */
+.step {
+    padding: 10px;
+    background: rgba(255,255,255,0.1);
+    margin-bottom: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.step:hover {
+    background: rgba(255, 255, 255, 0.458);
+}
+
+.step-detail {
+    display: none;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: rgba(221, 218, 218, 0.39);
+    border-radius: 6px;
+}
+
+/* FOOTER */
+.footer {
+    text-align: center;
+    padding: 20px;
+}
+
+/* SHOP */
+.shop-links a {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px 15px;
+    border-radius: 20px;
+    color: white;
+    text-decoration: none;
+}
+
+.yt-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background: red;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.yt-btn:hover {
+    background: darkred;
+    transform: scale(1.05);
+}
+
+.amazon   { background: #ff9900; }
+.flipkart { background: #2874f0; }
+.bigbasket{ background: #84c225; }
+.blinkit  { background: #f7d000; color: black; }
+.zepto    { background: #6f00ff; }
+.instamart{ background: #fc8019; }
+</style>
+</head>
+
+<body>
+
+<video autoplay muted loop>
+    <source src="/home/pratham/cookmate_wdl/cookmate_images/bg.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
+<div class="header">
+    <h2>🫔 Chicken Tamales</h2>
+    <div class="nav-buttons">
+        <button onclick="goBack()">⬅ Back</button>
+        <button onclick="goHome()">⌘ Home</button>
+    </div>
+</div>
+
+<div class="hero">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKgwKulbgkRzC-jvhGz6cbQNNGkfFQgLuDgQ&s">
+    <div class="hero-text">
+        <h1>Chicken Tamales</h1>
+        <p>Restaurant Style Recipe</p>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- ABOUT -->
+    <div class="card">
+        <h3>About Dish</h3>
+        <p id="typeText"></p>
+    </div>
+
+    <!-- INGREDIENTS -->
+    <div class="card">
+        <h3>Ingredients</h3>
+        <button class="dropdown-btn" onclick="toggleDropdown()">Show Ingredients ⬇</button>
+        <div class="dropdown-content" id="dropdown">
+
+            <!-- Chicken — same as Chicken Pizza -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/abis-pro-chicken-curry-cut/prid/690207" target="_blank">
+                    Chicken
+                </a>
+            </button>
+
+            <!-- Masa Harina (new) -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/naturally-pahadi-masa-harina-corn-flour-starch/prid/716074?srsltid=AfmBOopZH8V6AqpnOfQLffHUJPVX5sxkfTZFN2MCY9GoP7i0OeGgPEA0" target="_blank">
+                    Masa Harina (Corn Flour)
+                </a>
+            </button>
+
+            <!-- Onion — same as Prawn Risotto -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/onion/prid/391306" target="_blank">
+                    Onion
+                </a>
+            </button>
+
+            <!-- Garlic — same as Prawn Risotto -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/hommade-garlic-paste/prid/35025" target="_blank">
+                    Garlic
+                </a>
+            </button>
+
+            <!-- Butter — same as Prawn Risotto -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/cn/butter-more/cid/14/952?srsltid=AfmBOoomrtiEWzQVtUdE2gTsR6WmK5YFmk8KysEPQP5Mz_diFl5kgZ2f" target="_blank">
+                    Butter / Lard
+                </a>
+            </button>
+
+            <!-- Olive Oil — same as Prawn Risotto -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/figaro-extra-virgin-olive-oil/prid/9349" target="_blank">
+                    Olive Oil
+                </a>
+            </button>
+
+            <!-- Chicken Stock — new -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/naturally-pahadi-masa-harina-corn-flour-starch/prid/716074?srsltid=AfmBOopZH8V6AqpnOfQLffHUJPVX5sxkfTZFN2MCY9GoP7i0OeGgPEA0" target="_blank">
+                    Chicken Stock / Broth
+                </a>
+            </button>
+
+            <!-- Chilli Flakes — same as Chicken Pizza -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/catch-red-chilli-powder/prid/18854" target="_blank">
+                    Chilli Flakes / Red Chilli Powder
+                </a>
+            </button>
+
+            <!-- Black Pepper — same as Prawn Risotto -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/catch-black-peppercornskali-mirch/prid/187862" target="_blank">
+                    Black Pepper
+                </a>
+            </button>
+
+          
+
+            <!-- Tomato Sauce — same as Chicken Pizza (tomato puree) -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/hommade-tomato-puree/prid/233518" target="_blank">
+                    Tomato Puree / Salsa
+                </a>
+            </button>
+
+            <!-- Salt — same as Prawn Risotto -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/tata-salt-vacuum-evaporated-iodised/prid/105?srsltid=AfmBOor1fqU4Wwj8bb49x4IcSy9kFnn2V-aHLlxX6x1Bxquvbc8ukWgB" target="_blank">
+                    Salt
+                </a>
+            </button>
+
+            <!-- Fresh Parsley — same as Prawn Risotto -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/parsley/prid/443554?srsltid=AfmBOoogKH0bqy4ALB3rxlJKLeizg67ZXXwsmLhx9pAdCz3MZYIVcKgX" target="_blank">
+                    Fresh Coriander / Parsley
+                </a>
+            </button>
+
+           
+
+            <!-- Lemon — same as Prawn Risotto -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/lemon/prid/470482?srsltid=AfmBOoph42OVPpWusU0oud0TGsds-Ny8Z3fgMX6_TNYXpaNzUdUCKq47" target="_blank">
+                    Lemon
+                </a>
+            </button>
+
+        </div>
+    </div>
+
+    <!-- STEPS -->
+    <div class="card">
+        <h3>Steps (Click for details)</h3>
+
+        <div class="step" onclick="toggleDetail(0)">1. Soak the Corn Husks</div>
+        <div class="step-detail">Place the dried corn husks in a large bowl or basin. Cover completely with warm water and soak for at least 30–45 minutes until they are soft and pliable. Weigh them down with a plate if needed. Drain and pat dry before using.</div>
+
+        <div class="step" onclick="toggleDetail(1)">2. Cook & Shred the Chicken</div>
+        <div class="step-detail">Boil chicken pieces in salted water with garlic, onion and cumin for 20–25 minutes until fully cooked. Remove chicken, let it cool slightly, then shred it with two forks into thin strips. Reserve the broth for the masa dough.</div>
+
+        <div class="step" onclick="toggleDetail(2)">3. Make the Chicken Filling</div>
+        <div class="step-detail">Heat olive oil in a pan over medium heat. Sauté chopped onion and garlic for 3–4 minutes. Add tomato puree, chilli flakes, cumin, salt and black pepper. Stir in the shredded chicken and cook for 5 minutes until the filling is well coated and slightly dry. Set aside to cool.</div>
+
+        <div class="step" onclick="toggleDetail(3)">4. Prepare the Masa Dough</div>
+        <div class="step-detail">In a large bowl, beat softened butter until fluffy. Gradually mix in masa harina, warm chicken broth, salt and a pinch of cumin. Knead into a smooth, spreadable dough — it should hold its shape but not be too stiff. Add more broth if needed. A small ball of dough should float in water when ready.</div>
+
+        <div class="step" onclick="toggleDetail(4)">5. Assemble the Tamales</div>
+        <div class="step-detail">Lay a soaked corn husk flat on a surface. Spread a thin layer of masa dough (about 3–4 mm thick) over the wide end, leaving a 2 cm border on the sides. Place 1–2 tbsp of chicken filling in the centre. Fold the sides of the husk over the filling, then fold the narrow bottom end up. Tie with a strip of husk or leave folded side down.</div>
+
+        <div class="step" onclick="toggleDetail(5)">6. Steam the Tamales</div>
+        <div class="step-detail">Place a steamer rack in a large pot with 2–3 cm of water at the bottom. Stand the tamales upright with the open end facing up, packed tightly so they hold each other. Cover with a layer of extra corn husks and a damp cloth. Steam on medium heat for 60–75 minutes. Add more water if needed. Tamales are done when the masa peels cleanly away from the husk.</div>
+
+        <div class="step" onclick="toggleDetail(6)">7. Rest & Serve</div>
+        <div class="step-detail">Remove tamales from the steamer and let them rest for 5–10 minutes — they firm up as they cool. Unwrap and serve hot with fresh salsa, sour cream, chopped coriander and a squeeze of lemon. Enjoy fresh or store and reheat by steaming again for 10 minutes.</div>
+
+    </div>
+
+</div>
+
+<div class="footer">
+    <h3>Order Ingredients</h3>
+    <div class="shop-links">
+        <a href="https://www.amazon.in" class="amazon">Amazon</a>
+        <a href="https://www.flipkart.com" class="flipkart">Flipkart</a>
+        <a href="https://www.bigbasket.com" class="bigbasket">BigBasket</a>
+        <a href="https://blinkit.com" class="blinkit">Blinkit</a>
+        <a href="https://www.zeptonow.com" class="zepto">Zepto</a>
+        <a href="https://www.swiggy.com/instamart" class="instamart">Instamart</a>
+    </div>
+</div>
+
+<!-- YOUTUBE LINK -->
+<div class="card" style="max-width:1000px; margin: 0 auto 20px;">
+    <h3>Watch Recipe 🎥</h3>
+    <a href="https://www.youtube.com/watch?v=0CWWF_up2rQ" target="_blank" class="yt-btn">
+        ▶ Watch Chicken Tamales Recipe on YouTube
+    </a>
+</div>
+
+<script>
+function goHome() {
+    window.location.href = "/home/pratham/cookmate_wdl/initials/cookmate_f.html ";
+}
+function goBack() {
+    window.location.href = "/home/pratham/cookmate_wdl/nonvegg/Mexican Non-Veg.html";
+}
+
+function toggleDropdown() {
+    let d = document.getElementById("dropdown");
+    d.style.display = d.style.display === "block" ? "none" : "block";
+}
+
+function toggleDetail(index) {
+    let details = document.getElementsByClassName("step-detail");
+    details[index].style.display =
+        details[index].style.display === "block" ? "none" : "block";
+}
+
+/* TYPEWRITER */
+const text = "Chicken Tamales are a beloved Mexican street food made from tender masa dough filled with juicy spiced chicken, wrapped in corn husks and slow-steamed to perfection. Soft, flavourful and deeply satisfying, they are a festive dish passed down through generations and enjoyed across Latin America and beyond.";
+let i = 0;
+
+function typeWriter() {
+    if (i < text.length) {
+        document.getElementById("typeText").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 25);
+    }
+}
+typeWriter();
+</script>
+
+</body>
+</html>

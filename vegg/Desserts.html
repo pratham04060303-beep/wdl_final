@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Desserts Food</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body, html {
+    height: 100%;
+}
+
+/* Background video */
+video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+/* Overlay */
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: -1;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    color: white;
+}
+
+
+.back-btn {
+    padding: 10px 15px;
+    border: none;
+    background: orange;
+    cursor: pointer;
+    border-radius: 5px;
+    
+}
+.home-btn {
+    padding: 10px 15px;
+    border: none;
+    background: orange;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+}
+.home-btn:hover {
+    transform: scale(1.05);
+}
+
+.back-btn:hover {
+    transform: scale(1.05);
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 10px; /* space between buttons */
+}
+
+/* Grid layout */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Each tile */
+.tile {
+     width: 220px;
+    height: 180px;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Background image */
+.tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Dark overlay on tile */
+.tile::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    top: 0;
+    left: 0;
+}
+
+/* Cuisine name */
+.tile span {
+    position: absolute;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    z-index: 2;
+    margin-left: 40%;
+    bottom: 20%;
+    left: 100%;
+    transform: translate(-50%, -50%);
+}
+
+/* Hover effect */
+.tile:hover {
+    transform: scale(1.05);
+}
+/* HERO SECTION (Indian banner) */
+.Desserts {
+    position: relative;
+    height: 300px;
+    background: url("https://thumbs.dreamstime.com/b/long-table-many-different-types-pastries-desserts-made-wood-has-rustic-feel-to-382991282.jpg") center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Desserts::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    top: 0;
+    left: 0;
+}
+
+.Desserts-content {
+    position: relative;
+    color: white;
+    text-align: center;
+    z-index: 2;
+}
+
+.Desserts-content h1 {
+    font-size: 32px;
+}
+
+.Desserts-content p {
+    font-size: 14px;
+    margin-top: 10px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.grid {
+    display: grid;
+    grid-auto-flow: column;              /* horizontal */
+    grid-template-rows: repeat(2, 180px); /* 2 rows */
+    gap: 20px;
+    padding: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+}
+
+/* hide scrollbar */
+.grid::-webkit-scrollbar {
+    display: none;
+}
+
+/* TILE */
+.tile {
+    min-width: 220px;  /* important for horizontal layout */
+    height: 180px;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+}
+
+/* Text on image */
+.tile span {
+    position: absolute;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    z-index: 2;
+    bottom: 10px;
+    left: 10px;
+}
+.scroll-wrapper {
+    position: relative;
+}
+
+.scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: orange;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.left-btn { left: 5px; }
+.right-btn { right: 5px; }
+</style>
+</head>
+
+<body>
+
+<!-- Background Video -->
+<video autoplay muted loop>
+    <source src="/home/pratham/cookmate_wdl/cookmate_images/bg.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
+<!-- Header -->
+<div class="header">
+    <h2>Choose Desserts  Dish 🌱</h2>
+
+    <div class="nav-buttons">
+        <button class="back-btn" onclick="goBack()">⬅ Back</button>
+        <button class="home-btn" onclick="goback()">⌘ Home</button>
+    </div>
+</div>
+<div class="Desserts">
+    <div class="Desserts-content">
+        <h1>Desserts Cuisine 🌱</h1>
+        <p>
+            Desserts are sweet dishes enjoyed after meals, known for their rich taste and delightful flavors.
+             They are made using ingredients like sugar, milk, fruits, chocolate, and dry fruits, and include 
+             treats like cakes, sweets, ice cream, and puddings.
+        </p>
+    </div>
+</div>
+<!-- Grid -->
+<div class="scroll-wrapper">
+
+<button class="scroll-btn left-btn" onclick="scrollLeft()">◀</button>
+
+<div class="grid" id="foodGrid">
+
+    <!-- 12 Tiles -->
+    
+
+    <div class="tile" onclick="go('Gulab Jamun.html')">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcQ5ajWr8uH8ucnNcpqa9irsm0aTGEDZN4hw&s">
+        <span>Gulab Jamun</span>
+    </div>
+
+    <div class="tile" onclick="go('Rasgulla .html')">
+        <img src="https://www.kuchpakrahahai.in/wp-content/uploads/2020/05/Rasgulla-2BRecipe-2Bin-2BPressure-2BCooker-e1626148996679-360x360.jpg">
+        <span>Rasgulla</span>
+    </div>
+
+    <div class="tile" onclick="go('Kaju Katli.html')">
+        <img src="https://static.toiimg.com/thumb/55048826.cms?width=1200&height=900">
+        <span>Kaju Katli</span>
+    </div>
+
+    <div class="tile" onclick="go('Jalebi.html')">
+        <img src="https://i0.wp.com/binjalsvegkitchen.com/wp-content/uploads/2023/10/Instant-Jalebi-H1.jpg?fit=600%2C904&ssl=1">
+        <span>Jalebi</span>
+    </div>
+
+    <div class="tile" onclick="go('Ice Cream.html')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/Ice_cream_with_whipped_cream%2C_chocolate_syrup%2C_and_a_wafer_%28cropped%29.jpg">
+        <span>Ice Cream</span>
+    </div>
+
+    <div class="tile" onclick="go('Chocolate Cake.html')">
+        <img src="https://www.warmoven.in/cdn/shop/files/duel-delight-chocolate_-cake.jpg?v=1749833568&width=1080">
+        <span>Chocolate Cake</span>
+    </div>
+
+   
+</div>
+
+<button class="scroll-btn right-btn" onclick="scrollRight()">▶</button>
+
+</div>
+
+<script>
+function goback() {
+        window.location.href = "/home/pratham/cookmate_wdl/initials /cookmate_f.html";
+    }
+function goBack() {
+    window.location.href = "/home/pratham/cookmate_wdl/initials /veg.html";
+}
+
+function go(page) {
+    window.location.href = page;
+}
+</script>
+
+</body>
+</html>

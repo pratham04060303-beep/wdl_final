@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Pepper Mutton - CookMate</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+video {
+    position: fixed;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: -1;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    color: white;
+}
+
+.nav-buttons button {
+    background: orange;
+    border: none;
+    padding: 10px 15px;
+    margin-left: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.nav-buttons button:hover {
+    transform: scale(1.05);
+}
+
+.hero {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.hero img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.hero-text {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.321);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+#typeText {
+    border-right: 2px solid white;
+    white-space: normal;
+    word-wrap: break-word;
+    line-height: 1.6;
+}
+
+.dropdown-btn {
+    width: 100%;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.385);
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    margin-top: 10px;
+}
+
+.ing-btn {
+    margin: 5px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 20px;
+    background: orange;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.ing-btn:hover {
+    background: #ff6600;
+    transform: scale(1.05);
+}
+
+.ing-btn a {
+    color: white;
+    text-decoration: none;
+}
+
+.step {
+    padding: 10px;
+    background: rgba(255,255,255,0.1);
+    margin-bottom: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.step:hover {
+    background: rgba(255, 255, 255, 0.458);
+}
+
+.step-detail {
+    display: none;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: rgba(221, 218, 218, 0.39);
+    border-radius: 6px;
+}
+
+.footer {
+    text-align: center;
+    padding: 20px;
+}
+
+.shop-links a {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px 15px;
+    border-radius: 20px;
+    color: white;
+    text-decoration: none;
+}
+
+.yt-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background: red;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.yt-btn:hover {
+    background: darkred;
+    transform: scale(1.05);
+}
+
+.amazon   { background: #ff9900; }
+.flipkart { background: #2874f0; }
+.bigbasket{ background: #84c225; }
+.blinkit  { background: #f7d000; color: black; }
+.zepto    { background: #6f00ff; }
+.instamart{ background: #fc8019; }
+</style>
+</head>
+
+<body>
+
+<video autoplay muted loop>
+    <source src="/home/pratham/cookmate_wdl/cookmate_images/bg.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
+<div class="header">
+    <h2>🍖 Pepper Mutton</h2>
+    <div class="nav-buttons">
+        <button onclick="goBack()">⬅ Back</button>
+        <button onclick="goHome()">⌘ Home</button>
+    </div>
+</div>
+
+<div class="hero">
+    <img src="https://images.unsplash.com/photo-1545247181-516773cae754?w=1200&q=80">
+    <div class="hero-text">
+        <h1>Pepper Mutton</h1>
+        <p>Restaurant Style Recipe</p>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- ABOUT -->
+    <div class="card">
+        <h3>About Dish</h3>
+        <p id="typeText"></p>
+    </div>
+
+    <!-- INGREDIENTS -->
+    <div class="card">
+        <h3>Ingredients</h3>
+        <button class="dropdown-btn" onclick="toggleDropdown()">Show Ingredients ⬇</button>
+        <div class="dropdown-content" id="dropdown">
+
+            <!-- Mutton — reused from Kola Urundai -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/cn/mutton/cid/4/1363?srsltid=AfmBOoo6hX-D7GnWawtkGcRZbHXRSPt_Yb7sH-KYlxBup-Vo_qUOGpGw" target="_blank">
+                    Mutton (curry cut, bone-in)
+                </a>
+            </button>
+
+            <!-- Black Pepper — reused (star ingredient) -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/catch-black-peppercornskali-mirch/prid/187862" target="_blank">
+                    Black Pepper (coarsely crushed)
+                </a>
+            </button>
+
+            <!-- Onion — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/onion/prid/391306" target="_blank">
+                    Onion
+                </a>
+            </button>
+
+            <!-- Garlic — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/hommade-garlic-paste/prid/35025" target="_blank">
+                    Garlic
+                </a>
+            </button>
+
+            <!-- Tomato Puree — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/hommade-tomato-puree/prid/233518" target="_blank">
+                    Tomato Puree
+                </a>
+            </button>
+
+            <!-- Cumin — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/everest-jeera-powder-cumin-powder/prid/63?srsltid=AfmBOoov2ao0nMO5EQQL56MstIHQ4Sfhw79rZ9VE0v5GGxbzX3JEtDC_" target="_blank">
+                    Cumin Seeds
+                </a>
+            </button>
+
+            <!-- Fennel Seeds — reused from Kola Urundai -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/catch-fennel-seeds-saunf/prid/18862?srsltid=AfmBOopVww0MnnG8jvbHXDPtizBVnGRN6yqNBmEJBqDnlizakWN9QXJQ" target="_blank">
+                    Fennel Seeds (Saunf)
+                </a>
+            </button>
+
+            <!-- Garam Masala — reused from Kola Urundai -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/catch-garam-masala/prid/18856?srsltid=AfmBOopVww0MnnG8jvbHXDPtizBVnGRN6yqNBmEJBqDnlizakWN9QXJQ" target="_blank">
+                    Garam Masala
+                </a>
+            </button>
+
+            <!-- Red Chilli Powder — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/catch-red-chilli-powder/prid/18854" target="_blank">
+                    Red Chilli Powder
+                </a>
+            </button>
+
+            <!-- Oil — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/figaro-extra-virgin-olive-oil/prid/9349" target="_blank">
+                    Oil
+                </a>
+            </button>
+
+            <!-- Salt — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/tata-salt-vacuum-evaporated-iodised/prid/105?srsltid=AfmBOor1fqU4Wwj8bb49x4IcSy9kFnn2V-aHLlxX6x1Bxquvbc8ukWgB" target="_blank">
+                    Salt
+                </a>
+            </button>
+
+            <!-- Fresh Coriander — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/parsley/prid/443554?srsltid=AfmBOoogKH0bqy4ALB3rxlJKLeizg67ZXXwsmLhx9pAdCz3MZYIVcKgX" target="_blank">
+                    Fresh Coriander (garnish)
+                </a>
+            </button>
+
+            <!-- Lemon — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/lemon/prid/470482?srsltid=AfmBOoph42OVPpWusU0oud0TGsds-Ny8Z3fgMX6_TNYXpaNzUdUCKq47" target="_blank">
+                    Lemon (to serve)
+                </a>
+            </button>
+
+        </div>
+    </div>
+
+    <!-- STEPS -->
+    <div class="card">
+        <h3>Steps (Click for details)</h3>
+
+        <div class="step" onclick="toggleDetail(0)">1. Marinate the Mutton</div>
+        <div class="step-detail">Wash and clean the mutton pieces thoroughly. In a bowl, combine the mutton with salt, red chilli powder, half the crushed black pepper and garam masala. Mix well to coat every piece. Marinate for at least 30 minutes — or overnight in the fridge for deeper flavour. The pepper marinade begins tenderising the meat immediately.</div>
+
+        <div class="step" onclick="toggleDetail(1)">2. Sear the Mutton</div>
+        <div class="step-detail">Heat oil in a heavy-bottomed pan or pressure cooker over high heat. Add the marinated mutton pieces in a single layer and sear for 3–4 minutes on each side until browned all over. Do not stir too early — let it develop a crust. Remove and set aside. This searing step locks in juices and builds deep colour and flavour.</div>
+
+        <div class="step" onclick="toggleDetail(2)">3. Build the Masala</div>
+        <div class="step-detail">In the same pan, reduce heat to medium. Add cumin seeds and fennel seeds and let them splutter for 30 seconds. Add finely sliced onion and cook for 7–8 minutes until deeply golden and caramelised. Add garlic and cook for 1 minute. Stir in tomato puree and cook for 4–5 minutes until the oil separates from the masala.</div>
+
+        <div class="step" onclick="toggleDetail(3)">4. Pressure Cook the Mutton</div>
+        <div class="step-detail">Return the seared mutton to the pan. Add 200 ml of water and stir everything together. If using a pressure cooker, close the lid and cook on medium heat for 4–5 whistles until the mutton is completely tender and falling off the bone. If using a regular pot, cover and simmer on low heat for 60–75 minutes, checking occasionally and adding water if needed.</div>
+
+        <div class="step" onclick="toggleDetail(4)">5. Finish with Pepper & Serve</div>
+        <div class="step-detail">Once the mutton is tender, open the lid and cook on high heat for 3–4 minutes to reduce any excess liquid until the masala coats the meat thickly. Add the remaining coarsely crushed black pepper and toss well — this final addition of fresh pepper gives the dish its signature bold, sharp heat. Garnish with fresh coriander and a squeeze of lemon. Serve hot with rice, roti or parotta.</div>
+
+    </div>
+
+</div>
+
+<div class="footer">
+    <h3>Order Ingredients</h3>
+    <div class="shop-links">
+        <a href="https://www.amazon.in" class="amazon">Amazon</a>
+        <a href="https://www.flipkart.com" class="flipkart">Flipkart</a>
+        <a href="https://www.bigbasket.com" class="bigbasket">BigBasket</a>
+        <a href="https://blinkit.com" class="blinkit">Blinkit</a>
+        <a href="https://www.zeptonow.com" class="zepto">Zepto</a>
+        <a href="https://www.swiggy.com/instamart" class="instamart">Instamart</a>
+    </div>
+</div>
+
+<!-- YOUTUBE LINK -->
+<div class="card" style="max-width:1000px; margin: 0 auto 20px;">
+    <h3>Watch Recipe 🎥</h3>
+    <a href="https://www.youtube.com/watch?v=8BEfRe4jSuA" target="_blank" class="yt-btn">
+        ▶ Watch Pepper Mutton Recipe on YouTube
+    </a>
+</div>
+
+<script>
+function goHome() {
+    window.location.href = "/home/pratham/cookmate_wdl/initials/cookmate_f.html ";
+}
+
+function goBack() {
+    window.location.href = "/home/pratham/cookmate_wdl/nonvegg/south indian non veg.html";
+}
+
+function toggleDropdown() {
+    let d = document.getElementById("dropdown");
+    d.style.display = d.style.display === "block" ? "none" : "block";
+}
+
+function toggleDetail(index) {
+    let details = document.getElementsByClassName("step-detail");
+    details[index].style.display =
+        details[index].style.display === "block" ? "none" : "block";
+}
+
+/* TYPEWRITER */
+const text = "Pepper Mutton is a bold and fiery South Indian dry curry made with tender bone-in mutton pieces coated in a thick, aromatic masala and finished with a generous burst of coarsely crushed black pepper. Rich, deeply spiced and intensely flavourful, it is a Chettinad classic that pairs perfectly with rice, roti or flaky parotta.";
+let i = 0;
+
+function typeWriter() {
+    if (i < text.length) {
+        document.getElementById("typeText").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 25);
+    }
+}
+typeWriter();
+</script>
+
+</body>
+</html>

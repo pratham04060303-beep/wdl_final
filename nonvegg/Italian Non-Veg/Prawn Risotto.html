@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Prawn Risotto - CookMate</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* VIDEO BG */
+video {
+    position: fixed;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+/* OVERLAY */
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: -1;
+}
+
+/* HEADER */
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    color: white;
+}
+
+.nav-buttons button {
+    background: orange;
+    border: none;
+    padding: 10px 15px;
+    margin-left: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.nav-buttons button:hover {
+    transform: scale(1.05);
+}
+
+/* HERO */
+.hero {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.hero img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.hero-text {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+}
+
+/* CONTENT */
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* CARD */
+.card {
+    background: rgba(255, 255, 255, 0.321);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+/* TYPEWRITER */
+#typeText {
+    border-right: 2px solid white;
+    white-space: normal;
+    word-wrap: break-word;
+    line-height: 1.6;
+}
+
+/* DROPDOWN */
+.dropdown-btn {
+    width: 100%;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.385);
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    margin-top: 10px;
+}
+
+/* INGREDIENT BUTTONS */
+.ing-btn {
+    margin: 5px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 20px;
+    background: orange;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.ing-btn:hover {
+    background: #ff6600;
+    transform: scale(1.05);
+}
+
+.ing-btn a {
+    color: white;
+    text-decoration: none;
+}
+
+/* STEPS */
+.step {
+    padding: 10px;
+    background: rgba(255,255,255,0.1);
+    margin-bottom: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.step:hover {
+    background: rgba(255, 255, 255, 0.458);
+}
+
+.step-detail {
+    display: none;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: rgba(221, 218, 218, 0.39);
+    border-radius: 6px;
+}
+
+/* FOOTER */
+.footer {
+    text-align: center;
+    padding: 20px;
+}
+
+/* SHOP */
+.shop-links a {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px 15px;
+    border-radius: 20px;
+    color: white;
+    text-decoration: none;
+}
+
+.yt-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background: red;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.yt-btn:hover {
+    background: darkred;
+    transform: scale(1.05);
+}
+
+.amazon   { background: #ff9900; }
+.flipkart { background: #2874f0; }
+.bigbasket{ background: #84c225; }
+.blinkit  { background: #f7d000; color: black; }
+.zepto    { background: #6f00ff; }
+.instamart{ background: #fc8019; }
+</style>
+</head>
+
+<body>
+
+<video autoplay muted loop>
+    <source src="/home/pratham/cookmate_wdl/cookmate_images/bg.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
+<div class="header">
+    <h2>🦐 Prawn Risotto</h2>
+    <div class="nav-buttons">
+        <button onclick="goBack()">⬅ Back</button>
+        <button onclick="goHome()">⌘ Home</button>
+    </div>
+</div>
+
+<div class="hero">
+    <img src="https://media.hellofresh.com/q_100,w_3840,f_auto,c_limit,fl_lossy/recipes/image/cajun-prawn-risotto-6472d9ce-0cf5d092.jpg">
+    <div class="hero-text">
+        <h1>Prawn Risotto</h1>
+        <p>Restaurant Style Recipe</p>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- ABOUT -->
+    <div class="card">
+        <h3>About Dish</h3>
+        <p id="typeText"></p>
+    </div>
+
+    <!-- INGREDIENTS -->
+    <div class="card">
+        <h3>Ingredients</h3>
+        <button class="dropdown-btn" onclick="toggleDropdown()">Show Ingredients ⬇</button>
+        <div class="dropdown-content" id="dropdown">
+
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/itc-master-chef-medium-prawns-peeled-deveined-frozen/prid/452658?srsltid=AfmBOoo6JSLDjkvDMofd4ucy5tm9EpEIxkElpZuCP1tWrdweJQqYI4z8" target="_blank">
+                    Prawns
+                </a>
+            </button>
+
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/india-gate-basmati-rice/prid/3811" target="_blank">
+                    Arborio / Short Grain Rice
+                </a>
+            </button>
+
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/onion/prid/391306" target="_blank">
+                    Onion
+                </a>
+            </button>
+
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/hommade-garlic-paste/prid/35025" target="_blank">
+                    Garlic
+                </a>
+            </button>
+
+            <button class="ing-btn">
+                <a href="https://blinkit.com/cn/butter-more/cid/14/952?srsltid=AfmBOoomrtiEWzQVtUdE2gTsR6WmK5YFmk8KysEPQP5Mz_diFl5kgZ2f" target="_blank">
+                    Butter
+                </a>
+            </button>
+
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/figaro-extra-virgin-olive-oil/prid/9349" target="_blank">
+                    Olive Oil
+                </a>
+            </button>
+
+            <button class="ing-btn">
+                <a href="https://blinkit.com/blog/vegetable-stock/?srsltid=AfmBOoplXSi2m-zn5gp5XW1E_ZpG2Pn1iE9a1Y7JF4uv2b_TjXdxXg3B" target="_blank">
+                    Vegetable / Seafood Stock
+                </a>
+            </button>
+
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/colavita-white-wine-vinegar/prid/103091?srsltid=AfmBOopwI99Jriyk_KjnFD_dx9AqahGpKthVfvOcmkJ3Q2cbFsMViCVg" target="_blank">
+                    White Wine / White Wine Vinegar
+                </a>
+            </button>
+
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/amul-fresh-cream/prid/162?srsltid=AfmBOop3Xbuj4sjX0qXxoUKiGicepRYV7JiBCLXZ5ThOP1QSgEoUXJLd" target="_blank">
+                    Fresh Cream
+                </a>
+            </button>
+
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/kraft-parmesan-grated-cheese/prid/163979?srsltid=AfmBOoof9ytyMeq7Ax3f54SU9c5WaA-6Sb9uY5OPTPnFUpeaZy5cph7W" target="_blank">
+                    Parmesan Cheese
+                </a>
+            </button>
+
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/catch-black-peppercornskali-mirch/prid/187862" target="_blank">
+                    Black Pepper
+                </a>
+            </button>
+
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/tata-salt-vacuum-evaporated-iodised/prid/105?srsltid=AfmBOor1fqU4Wwj8bb49x4IcSy9kFnn2V-aHLlxX6x1Bxquvbc8ukWgB" target="_blank">
+                    Salt
+                </a>
+            </button>
+
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/parsley/prid/443554?srsltid=AfmBOoogKH0bqy4ALB3rxlJKLeizg67ZXXwsmLhx9pAdCz3MZYIVcKgX" target="_blank">
+                    Fresh Parsley
+                </a>
+            </button>
+
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/lemon/prid/470482?srsltid=AfmBOoph42OVPpWusU0oud0TGsds-Ny8Z3fgMX6_TNYXpaNzUdUCKq47" target="_blank">
+                    Lemon
+                </a>
+            </button>
+
+        </div>
+    </div>
+
+    <!-- STEPS -->
+    <div class="card">
+        <h3>Steps (Click for details)</h3>
+
+        <div class="step" onclick="toggleDetail(0)">1. Prepare the Prawns</div>
+        <div class="step-detail">Peel and devein the prawns, leaving the tails on if desired. Pat them dry with a paper towel. Season with salt, black pepper and a squeeze of lemon juice. Set aside. Keep the shells to make a quick stock if desired.</div>
+
+        <div class="step" onclick="toggleDetail(1)">2. Warm the Stock</div>
+        <div class="step-detail">Pour the vegetable or seafood stock into a saucepan and keep it warm on low heat throughout cooking. Having warm stock is essential — adding cold stock to the risotto stops the cooking process and ruins the texture.</div>
+
+        <div class="step" onclick="toggleDetail(2)">3. Sauté the Base</div>
+        <div class="step-detail">In a wide, heavy-bottomed pan, heat olive oil and 1 tbsp butter over medium heat. Add finely chopped onion and cook for 4–5 minutes until soft and translucent. Add minced garlic and cook for 1 more minute until fragrant.</div>
+
+        <div class="step" onclick="toggleDetail(3)">4. Toast the Rice</div>
+        <div class="step-detail">Add the Arborio rice to the pan and stir well to coat each grain in the butter and oil. Toast the rice for 1–2 minutes until the edges turn slightly translucent. This step builds the nutty base flavour of the risotto.</div>
+
+        <div class="step" onclick="toggleDetail(4)">5. Add Wine & Cook the Risotto</div>
+        <div class="step-detail">Pour in the white wine or white wine vinegar and stir until absorbed. Begin adding the warm stock one ladle at a time, stirring continuously and waiting until each ladle is fully absorbed before adding the next. Repeat for 18–20 minutes until the rice is creamy and al dente.</div>
+
+        <div class="step" onclick="toggleDetail(5)">6. Cook the Prawns</div>
+        <div class="step-detail">In a separate pan, heat butter over high heat. Sear the seasoned prawns for 1–2 minutes per side until pink, curled and lightly golden. Do not overcook. Set aside. You can also add them directly to the risotto in the last 3 minutes of cooking.</div>
+
+        <div class="step" onclick="toggleDetail(6)">7. Finish & Serve</div>
+        <div class="step-detail">Remove the risotto from heat. Stir in the remaining butter, a splash of cream and grated Parmesan cheese. Fold in the cooked prawns gently. Season with salt, black pepper and a squeeze of lemon. Serve immediately in warm bowls topped with fresh parsley and extra Parmesan.</div>
+
+    </div>
+
+</div>
+
+<div class="footer">
+    <h3>Order Ingredients</h3>
+    <div class="shop-links">
+        <a href="https://www.amazon.in" class="amazon">Amazon</a>
+        <a href="https://www.flipkart.com" class="flipkart">Flipkart</a>
+        <a href="https://www.bigbasket.com" class="bigbasket">BigBasket</a>
+        <a href="https://blinkit.com" class="blinkit">Blinkit</a>
+        <a href="https://www.zeptonow.com" class="zepto">Zepto</a>
+        <a href="https://www.swiggy.com/instamart" class="instamart">Instamart</a>
+    </div>
+</div>
+
+<!-- YOUTUBE LINK -->
+<div class="card" style="max-width:1000px; margin: 0 auto 20px;">
+    <h3>Watch Recipe 🎥</h3>
+    <a href="https://www.youtube.com/watch?v=MPoS2_YhXWo" target="_blank" class="yt-btn">
+        ▶ Watch Prawn Risotto Recipe on YouTube
+    </a>
+</div>
+
+<script>
+function goBack() {
+    window.location.href = "/home/pratham/cookmate_wdl/nonvegg/Italian Non-Veg.html";
+}
+function goHome() {
+    window.location.href = "/home/pratham/cookmate_wdl/initials /cookmate_f.html";
+}
+
+function toggleDropdown() {
+    let d = document.getElementById("dropdown");
+    d.style.display = d.style.display === "block" ? "none" : "block";
+}
+
+function toggleDetail(index) {
+    let details = document.getElementsByClassName("step-detail");
+    details[index].style.display =
+        details[index].style.display === "block" ? "none" : "block";
+}
+
+/* TYPEWRITER */
+const text = "Prawn Risotto is a luxurious Italian classic that combines plump, juicy prawns with velvety, slow-cooked Arborio rice in a rich stock-based sauce, finished with Parmesan and butter. Creamy, comforting and deeply flavourful, it is a restaurant-worthy dish that brings the taste of coastal Italy right to your plate.";
+let i = 0;
+
+function typeWriter() {
+    if (i < text.length) {
+        document.getElementById("typeText").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 25);
+    }
+}
+typeWriter();
+</script>
+
+</body>
+</html>

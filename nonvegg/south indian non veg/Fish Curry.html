@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>South Indian Fish Curry - CookMate</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+video {
+    position: fixed;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: -1;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    color: white;
+}
+
+.nav-buttons button {
+    background: orange;
+    border: none;
+    padding: 10px 15px;
+    margin-left: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.nav-buttons button:hover {
+    transform: scale(1.05);
+}
+
+.hero {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.hero img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.hero-text {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.321);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+#typeText {
+    border-right: 2px solid white;
+    white-space: normal;
+    word-wrap: break-word;
+    line-height: 1.6;
+}
+
+.dropdown-btn {
+    width: 100%;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.385);
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    margin-top: 10px;
+}
+
+.ing-btn {
+    margin: 5px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 20px;
+    background: orange;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.ing-btn:hover {
+    background: #ff6600;
+    transform: scale(1.05);
+}
+
+.ing-btn a {
+    color: white;
+    text-decoration: none;
+}
+
+.step {
+    padding: 10px;
+    background: rgba(255,255,255,0.1);
+    margin-bottom: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.step:hover {
+    background: rgba(255, 255, 255, 0.458);
+}
+
+.step-detail {
+    display: none;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: rgba(221, 218, 218, 0.39);
+    border-radius: 6px;
+}
+
+.footer {
+    text-align: center;
+    padding: 20px;
+}
+
+.shop-links a {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px 15px;
+    border-radius: 20px;
+    color: white;
+    text-decoration: none;
+}
+
+.yt-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background: red;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.yt-btn:hover {
+    background: darkred;
+    transform: scale(1.05);
+}
+
+.amazon   { background: #ff9900; }
+.flipkart { background: #2874f0; }
+.bigbasket{ background: #84c225; }
+.blinkit  { background: #f7d000; color: black; }
+.zepto    { background: #6f00ff; }
+.instamart{ background: #fc8019; }
+</style>
+</head>
+
+<body>
+
+<video autoplay muted loop>
+    <source src="/home/pratham/cookmate_wdl/cookmate_images/bg.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
+<div class="header">
+    <h2>🐟 South Indian Fish Curry</h2>
+    <div class="nav-buttons">
+        <button onclick="goBack()">⬅ Back</button>
+        <button onclick="goHome()">⌘ Home</button>
+    </div>
+</div>
+
+<div class="hero">
+    <img src="https://images.unsplash.com/photo-1631292784640-2b24be784d5d?w=1200&q=80">
+    <div class="hero-text">
+        <h1>South Indian Fish Curry</h1>
+        <p>Restaurant Style Recipe</p>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- ABOUT -->
+    <div class="card">
+        <h3>About Dish</h3>
+        <p id="typeText"></p>
+    </div>
+
+    <!-- INGREDIENTS -->
+    <div class="card">
+        <h3>Ingredients</h3>
+        <button class="dropdown-btn" onclick="toggleDropdown()">Show Ingredients ⬇</button>
+        <div class="dropdown-content" id="dropdown">
+
+            <!-- Fish — reused from Thai Fish Cakes -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/fresho-rohu-fish-curry-cut/prid/308877?srsltid=AfmBOopzP0OcxGJBbGG4P_FuuBmOfDsXjG5eTeMq8BxYIFfL-BSYXF9p" target="_blank">
+                    Fish (Rohu / King Fish / Pomfret)
+                </a>
+            </button>
+
+            <!-- Coconut Milk — reused from Thai Red Curry -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/dabur-homemade-coconut-milk/prid/16842?srsltid=AfmBOoqBHhDX7sPbbSH3YBv1E4J0bsM5kh-bfb_YiW_62RFHt2MWrm5u" target="_blank">
+                    Coconut Milk
+                </a>
+            </button>
+
+            <!-- Onion — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/onion/prid/391306" target="_blank">
+                    Onion
+                </a>
+            </button>
+
+            <!-- Garlic — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/hommade-garlic-paste/prid/35025" target="_blank">
+                    Garlic
+                </a>
+            </button>
+
+            <!-- Tomato Puree — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/hommade-tomato-puree/prid/233518" target="_blank">
+                    Tomato Puree
+                </a>
+            </button>
+
+            <!-- Red Chilli Powder — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/catch-red-chilli-powder/prid/18854" target="_blank">
+                    Red Chilli Powder
+                </a>
+            </button>
+
+            <!-- Cumin — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/everest-jeera-powder-cumin-powder/prid/63?srsltid=AfmBOoov2ao0nMO5EQQL56MstIHQ4Sfhw79rZ9VE0v5GGxbzX3JEtDC_" target="_blank">
+                    Cumin / Mustard Seeds
+                </a>
+            </button>
+
+            <!-- Tamarind — NEW -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/catch-tamarind-imli/prid/18869?srsltid=AfmBOopVww0MnnG8jvbHXDPtizBVnGRN6yqNBmEJBqDnlizakWN9QXJQ" target="_blank">
+                    Tamarind (Imli)
+                </a>
+            </button>
+
+            <!-- Olive Oil — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/figaro-extra-virgin-olive-oil/prid/9349" target="_blank">
+                    Oil (coconut / regular)
+                </a>
+            </button>
+
+            <!-- Salt — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/tata-salt-vacuum-evaporated-iodised/prid/105?srsltid=AfmBOor1fqU4Wwj8bb49x4IcSy9kFnn2V-aHLlxX6x1Bxquvbc8ukWgB" target="_blank">
+                    Salt
+                </a>
+            </button>
+
+            <!-- Fresh Coriander — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/parsley/prid/443554?srsltid=AfmBOoogKH0bqy4ALB3rxlJKLeizg67ZXXwsmLhx9pAdCz3MZYIVcKgX" target="_blank">
+                    Fresh Coriander (garnish)
+                </a>
+            </button>
+
+            <!-- Rice — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/cn/rice-rice-products/cid/175/1935?srsltid=AfmBOopjxfapPOr2eJ7Htjlm9CwTECtpYDvI-6jo7Zfh_CLAm_A8SUyQ" target="_blank">
+                    Steamed Rice (to serve)
+                </a>
+            </button>
+
+        </div>
+    </div>
+
+    <!-- STEPS -->
+    <div class="card">
+        <h3>Steps (Click for details)</h3>
+
+        <div class="step" onclick="toggleDetail(0)">1. Marinate the Fish</div>
+        <div class="step-detail">Clean and wash the fish pieces thoroughly. Pat dry with a paper towel. Rub with salt and red chilli powder and set aside for 15–20 minutes. This firms up the fish slightly and helps it hold together during cooking without falling apart in the curry.</div>
+
+        <div class="step" onclick="toggleDetail(1)">2. Soak the Tamarind</div>
+        <div class="step-detail">Soak a small lemon-sized ball of tamarind in 100 ml of warm water for 10 minutes. Squeeze and strain the pulp through your fingers to extract the tamarind juice. Discard the fibres and seeds. This tamarind water gives the curry its signature sour tang that defines South Indian fish curry.</div>
+
+        <div class="step" onclick="toggleDetail(2)">3. Build the Curry Base</div>
+        <div class="step-detail">Heat oil in a wide pan or clay pot over medium heat. Add mustard or cumin seeds and let them splutter for 30 seconds. Add sliced onion and cook for 5–6 minutes until deep golden. Add garlic and cook for 1 minute. Stir in red chilli powder and cook for 30 seconds. Add tomato puree and cook for 4–5 minutes until the oil separates and the base is thick and dark.</div>
+
+        <div class="step" onclick="toggleDetail(3)">4. Add Coconut Milk & Tamarind</div>
+        <div class="step-detail">Pour in the coconut milk and tamarind water. Stir well to combine everything into a smooth, rich sauce. Season with salt. Bring to a gentle simmer on medium-low heat for 5 minutes. The sauce should be a deep reddish-orange colour with a beautiful coconut aroma.</div>
+
+        <div class="step" onclick="toggleDetail(4)">5. Cook the Fish & Serve</div>
+        <div class="step-detail">Gently slide the marinated fish pieces into the simmering curry. Do not stir — just spoon the sauce over the fish. Cook on low heat for 8–10 minutes until the fish is fully cooked through and flakes easily. Taste and adjust salt and sourness. Garnish with fresh coriander and serve hot with steamed rice.</div>
+
+    </div>
+
+</div>
+
+<div class="footer">
+    <h3>Order Ingredients</h3>
+    <div class="shop-links">
+        <a href="https://www.amazon.in" class="amazon">Amazon</a>
+        <a href="https://www.flipkart.com" class="flipkart">Flipkart</a>
+        <a href="https://www.bigbasket.com" class="bigbasket">BigBasket</a>
+        <a href="https://blinkit.com" class="blinkit">Blinkit</a>
+        <a href="https://www.zeptonow.com" class="zepto">Zepto</a>
+        <a href="https://www.swiggy.com/instamart" class="instamart">Instamart</a>
+    </div>
+</div>
+
+<!-- YOUTUBE LINK -->
+<div class="card" style="max-width:1000px; margin: 0 auto 20px;">
+    <h3>Watch Recipe 🎥</h3>
+    <a href="https://www.youtube.com/watch?v=8JmEBNKYAIQ" target="_blank" class="yt-btn">
+        ▶ Watch South Indian Fish Curry Recipe on YouTube
+    </a>
+</div>
+
+<script>
+function goHome() {
+    window.location.href = "/home/pratham/cookmate_wdl/initials/cookmate_f.html ";
+}
+
+function goBack() {
+    window.location.href = "/home/pratham/cookmate_wdl/nonvegg/south indian non veg.html";
+}
+
+function toggleDropdown() {
+    let d = document.getElementById("dropdown");
+    d.style.display = d.style.display === "block" ? "none" : "block";
+}
+
+function toggleDetail(index) {
+    let details = document.getElementsByClassName("step-detail");
+    details[index].style.display =
+        details[index].style.display === "block" ? "none" : "block";
+}
+
+/* TYPEWRITER */
+const text = "South Indian Fish Curry is a bold, tangy and deeply aromatic coastal classic simmered in a rich coconut milk and tamarind gravy, spiced with red chilli and tempered with mustard seeds. Every spoonful is a perfect balance of heat, sour and creaminess, best enjoyed piping hot over steamed rice.";
+let i = 0;
+
+function typeWriter() {
+    if (i < text.length) {
+        document.getElementById("typeText").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 25);
+    }
+}
+typeWriter();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Egg Kathi Roll - CookMate</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+video {
+    position: fixed;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: -1;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    color: white;
+}
+
+.nav-buttons button {
+    background: orange;
+    border: none;
+    padding: 10px 15px;
+    margin-left: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.nav-buttons button:hover {
+    transform: scale(1.05);
+}
+
+.hero {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.hero img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.hero-text {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.321);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+#typeText {
+    border-right: 2px solid white;
+    white-space: normal;
+    word-wrap: break-word;
+    line-height: 1.6;
+}
+
+.dropdown-btn {
+    width: 100%;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.385);
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    margin-top: 10px;
+}
+
+.ing-btn {
+    margin: 5px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 20px;
+    background: orange;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.ing-btn:hover {
+    background: #ff6600;
+    transform: scale(1.05);
+}
+
+.ing-btn a {
+    color: white;
+    text-decoration: none;
+}
+
+.step {
+    padding: 10px;
+    background: rgba(255,255,255,0.1);
+    margin-bottom: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.step:hover {
+    background: rgba(255, 255, 255, 0.458);
+}
+
+.step-detail {
+    display: none;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: rgba(221, 218, 218, 0.39);
+    border-radius: 6px;
+}
+
+.footer {
+    text-align: center;
+    padding: 20px;
+}
+
+.shop-links a {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px 15px;
+    border-radius: 20px;
+    color: white;
+    text-decoration: none;
+}
+
+.yt-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background: red;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.yt-btn:hover {
+    background: darkred;
+    transform: scale(1.05);
+}
+
+.amazon   { background: #ff9900; }
+.flipkart { background: #2874f0; }
+.bigbasket{ background: #84c225; }
+.blinkit  { background: #f7d000; color: black; }
+.zepto    { background: #6f00ff; }
+.instamart{ background: #fc8019; }
+</style>
+</head>
+
+<body>
+
+<video autoplay muted loop>
+    <source src="/home/pratham/cookmate_wdl/cookmate_images/bg.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
+<div class="header">
+    <h2>🥚 Egg Kathi Roll</h2>
+    <div class="nav-buttons">
+        <button onclick="goBack()">⬅ Back</button>
+        <button onclick="goHome()">⌘ Home</button>
+    </div>
+</div>
+
+<div class="hero">
+    <img src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=1200&q=80">
+    <div class="hero-text">
+        <h1>Egg Kathi Roll</h1>
+        <p>Restaurant Style Recipe</p>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- ABOUT -->
+    <div class="card">
+        <h3>About Dish</h3>
+        <p id="typeText"></p>
+    </div>
+
+    <!-- INGREDIENTS -->
+    <div class="card">
+        <h3>Ingredients</h3>
+        <button class="dropdown-btn" onclick="toggleDropdown()">Show Ingredients ⬇</button>
+        <div class="dropdown-content" id="dropdown">
+
+            <!-- Eggs — NEW -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/fresho-eggs-white-6-pcs/prid/236?srsltid=AfmBOopVww0MnnG8jvbHXDPtizBVnGRN6yqNBmEJBqDnlizakWN9QXJQ" target="_blank">
+                    Eggs
+                </a>
+            </button>
+
+            <!-- Paratha / Wrap — reused from Chicken Roll -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/habanero-flour-tortilla-wraps-ready-to-eat/prid/481564?srsltid=AfmBOoqrLPmFA9__7wPqVunporSc7IgVtmyahetKb_yMAPUdBSSl-ic1" target="_blank">
+                    Paratha / Roti / Wrap
+                </a>
+            </button>
+
+            <!-- Onion — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/onion/prid/391306" target="_blank">
+                    Onion (finely sliced)
+                </a>
+            </button>
+
+            <!-- Red Chilli Powder — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/catch-red-chilli-powder/prid/18854" target="_blank">
+                    Red Chilli Powder
+                </a>
+            </button>
+
+            <!-- Black Pepper — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/catch-black-peppercornskali-mirch/prid/187862" target="_blank">
+                    Black Pepper
+                </a>
+            </button>
+
+            <!-- Cumin — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/everest-jeera-powder-cumin-powder/prid/63?srsltid=AfmBOoov2ao0nMO5EQQL56MstIHQ4Sfhw79rZ9VE0v5GGxbzX3JEtDC_" target="_blank">
+                    Cumin Powder
+                </a>
+            </button>
+
+            <!-- Chutney / Sauce — reused from Chicken Roll -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/the-gourmet-jar-fresh-tomato-salsa/prid/657872?srsltid=AfmBOood9-u5X_kmF8WlRYgrzJHT7gZhfvj6uJjMKOGaSnk595SC-O1o" target="_blank">
+                    Green Chutney / Sauce
+                </a>
+            </button>
+
+            <!-- Sour Cream / Mayo — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/epigamia-sour-cream/prid/436682" target="_blank">
+                    Sour Cream / Mayo
+                </a>
+            </button>
+
+            <!-- Lemon — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/lemon/prid/470482?srsltid=AfmBOoph42OVPpWusU0oud0TGsds-Ny8Z3fgMX6_TNYXpaNzUdUCKq47" target="_blank">
+                    Lemon
+                </a>
+            </button>
+
+            <!-- Salt — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/tata-salt-vacuum-evaporated-iodised/prid/105?srsltid=AfmBOor1fqU4Wwj8bb49x4IcSy9kFnn2V-aHLlxX6x1Bxquvbc8ukWgB" target="_blank">
+                    Salt
+                </a>
+            </button>
+
+            <!-- Oil — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/figaro-extra-virgin-olive-oil/prid/9349" target="_blank">
+                    Oil / Butter
+                </a>
+            </button>
+
+            <!-- Fresh Coriander — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/parsley/prid/443554?srsltid=AfmBOoogKH0bqy4ALB3rxlJKLeizg67ZXXwsmLhx9pAdCz3MZYIVcKgX" target="_blank">
+                    Fresh Coriander
+                </a>
+            </button>
+
+        </div>
+    </div>
+
+    <!-- STEPS -->
+    <div class="card">
+        <h3>Steps (Click for details)</h3>
+
+        <div class="step" onclick="toggleDetail(0)">1. Prep the Onion Filling</div>
+        <div class="step-detail">Thinly slice the onion and toss with a pinch of salt, red chilli powder, cumin powder, a squeeze of lemon juice and fresh coriander. Mix well and set aside — this quick-pickled onion mixture is the heart of a great kathi roll, adding crunch, tang and heat to every bite.</div>
+
+        <div class="step" onclick="toggleDetail(1)">2. Warm the Paratha</div>
+        <div class="step-detail">Heat a tawa or flat pan over medium heat. Brush with a little oil or butter. Place the paratha or wrap on the tawa and warm for 20–30 seconds per side until soft, slightly golden and pliable. Keep warm wrapped in a clean cloth while you cook the egg.</div>
+
+        <div class="step" onclick="toggleDetail(2)">3. Make the Egg Omelette on the Paratha</div>
+        <div class="step-detail">Beat 2 eggs in a bowl with a pinch of salt, red chilli powder, black pepper and chopped coriander. Add a little oil to the hot tawa. Pour the beaten egg directly onto the tawa in a circle roughly the size of the paratha. Immediately place the warm paratha on top of the egg, pressing down gently. Let the egg cook and stick to the paratha for 1–2 minutes until set. Flip together so the egg side faces up — golden, spiced and bonded to the bread. This is the signature kathi roll technique.</div>
+
+        <div class="step" onclick="toggleDetail(3)">4. Assemble & Roll</div>
+        <div class="step-detail">With the egg side facing up, spread a layer of green chutney and sour cream or mayo across the centre. Pile the spiced pickled onion filling on top. Add a final squeeze of lemon and a sprinkle of fresh coriander. Roll tightly from one side, pressing firmly as you go. Wrap the lower half in foil or paper to hold it together. Serve immediately while hot.</div>
+
+    </div>
+
+</div>
+
+<div class="footer">
+    <h3>Order Ingredients</h3>
+    <div class="shop-links">
+        <a href="https://www.amazon.in" class="amazon">Amazon</a>
+        <a href="https://www.flipkart.com" class="flipkart">Flipkart</a>
+        <a href="https://www.bigbasket.com" class="bigbasket">BigBasket</a>
+        <a href="https://blinkit.com" class="blinkit">Blinkit</a>
+        <a href="https://www.zeptonow.com" class="zepto">Zepto</a>
+        <a href="https://www.swiggy.com/instamart" class="instamart">Instamart</a>
+    </div>
+</div>
+
+<!-- YOUTUBE LINK -->
+<div class="card" style="max-width:1000px; margin: 0 auto 20px;">
+    <h3>Watch Recipe 🎥</h3>
+    <a href="https://www.youtube.com/watch?v=p_Lq7l8JCYY" target="_blank" class="yt-btn">
+        ▶ Watch Egg Kathi Roll Recipe on YouTube
+    </a>
+</div>
+
+<script>
+function goHome() {
+    window.location.href = "/home/pratham/cookmate_wdl/initials/cookmate_f.html ";
+}
+
+function goBack() {
+    window.location.href = "/home/pratham/cookmate_wdl/nonvegg/streetfood non veg.html";
+}
+
+function toggleDropdown() {
+    let d = document.getElementById("dropdown");
+    d.style.display = d.style.display === "block" ? "none" : "block";
+}
+
+function toggleDetail(index) {
+    let details = document.getElementsByClassName("step-detail");
+    details[index].style.display =
+        details[index].style.display === "block" ? "none" : "block";
+}
+
+/* TYPEWRITER */
+const text = "Egg Kathi Roll is the iconic Kolkata street food where a spiced egg omelette is cooked directly onto a soft paratha, bonded together and rolled up with tangy pickled onions, green chutney and a squeeze of lemon. Simple, bold and endlessly satisfying, it is the kind of roll that stops you mid-bite to appreciate how good it is.";
+let i = 0;
+
+function typeWriter() {
+    if (i < text.length) {
+        document.getElementById("typeText").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 25);
+    }
+}
+typeWriter();
+</script>
+
+</body>
+</html>

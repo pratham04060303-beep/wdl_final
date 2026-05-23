@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mutton Kola Urundai - CookMate</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+video {
+    position: fixed;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: -1;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    color: white;
+}
+
+.nav-buttons button {
+    background: orange;
+    border: none;
+    padding: 10px 15px;
+    margin-left: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.nav-buttons button:hover {
+    transform: scale(1.05);
+}
+
+.hero {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.hero img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.hero-text {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.321);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+#typeText {
+    border-right: 2px solid white;
+    white-space: normal;
+    word-wrap: break-word;
+    line-height: 1.6;
+}
+
+.dropdown-btn {
+    width: 100%;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.385);
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    margin-top: 10px;
+}
+
+.ing-btn {
+    margin: 5px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 20px;
+    background: orange;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.ing-btn:hover {
+    background: #ff6600;
+    transform: scale(1.05);
+}
+
+.ing-btn a {
+    color: white;
+    text-decoration: none;
+}
+
+.step {
+    padding: 10px;
+    background: rgba(255,255,255,0.1);
+    margin-bottom: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.step:hover {
+    background: rgba(255, 255, 255, 0.458);
+}
+
+.step-detail {
+    display: none;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: rgba(221, 218, 218, 0.39);
+    border-radius: 6px;
+}
+
+.footer {
+    text-align: center;
+    padding: 20px;
+}
+
+.shop-links a {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px 15px;
+    border-radius: 20px;
+    color: white;
+    text-decoration: none;
+}
+
+.yt-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background: red;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.yt-btn:hover {
+    background: darkred;
+    transform: scale(1.05);
+}
+
+.amazon   { background: #ff9900; }
+.flipkart { background: #2874f0; }
+.bigbasket{ background: #84c225; }
+.blinkit  { background: #f7d000; color: black; }
+.zepto    { background: #6f00ff; }
+.instamart{ background: #fc8019; }
+</style>
+</head>
+
+<body>
+
+<video autoplay muted loop>
+    <source src="/home/pratham/cookmate_wdl/cookmate_images/bg.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
+<div class="header">
+    <h2>🍖 Mutton Kola Urundai</h2>
+    <div class="nav-buttons">
+        <button onclick="goBack()">⬅ Back</button>
+        <button onclick="goHome()">⌘ Home</button>
+    </div>
+</div>
+
+<div class="hero">
+    <img src="https://images.unsplash.com/photo-1529042410759-befb1204b468?w=1200&q=80">
+    <div class="hero-text">
+        <h1>Mutton Kola Urundai</h1>
+        <p>Restaurant Style Recipe</p>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- ABOUT -->
+    <div class="card">
+        <h3>About Dish</h3>
+        <p id="typeText"></p>
+    </div>
+
+    <!-- INGREDIENTS -->
+    <div class="card">
+        <h3>Ingredients</h3>
+        <button class="dropdown-btn" onclick="toggleDropdown()">Show Ingredients ⬇</button>
+        <div class="dropdown-content" id="dropdown">
+
+            <!-- Mutton — NEW -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/delichic-frozen-mutton-keema-mince/prid/542836?srsltid=AfmBOooAEJPyex7cTBQYITsAdWTOwWVtKs5Cd9EYP68WjvsZpQTlF-GQ" target="_blank">
+                    Mutton (minced / keema)
+                </a>
+            </button>
+
+            <!-- Onion — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/onion/prid/391306" target="_blank">
+                    Onion
+                </a>
+            </button>
+
+            <!-- Garlic — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/hommade-garlic-paste/prid/35025" target="_blank">
+                    Garlic
+                </a>
+            </button>
+
+            <!-- Red Chilli Powder — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/catch-red-chilli-powder/prid/18854" target="_blank">
+                    Red Chilli Powder
+                </a>
+            </button>
+
+            <!-- Black Pepper — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/catch-black-peppercornskali-mirch/prid/187862" target="_blank">
+                    Black Pepper
+                </a>
+            </button>
+
+            <!-- Cumin — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/everest-jeera-powder-cumin-powder/prid/63?srsltid=AfmBOoov2ao0nMO5EQQL56MstIHQ4Sfhw79rZ9VE0v5GGxbzX3JEtDC_" target="_blank">
+                    Cumin Powder
+                </a>
+            </button>
+
+            <!-- Garam Masala — NEW -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/catch-garam-masala/prid/18856?srsltid=AfmBOopVww0MnnG8jvbHXDPtizBVnGRN6yqNBmEJBqDnlizakWN9QXJQ" target="_blank">
+                    Garam Masala
+                </a>
+            </button>
+
+            <!-- Fennel Seeds — NEW -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/delichic-frozen-mutton-keema-mince/prid/542836?srsltid=AfmBOooAEJPyex7cTBQYITsAdWTOwWVtKs5Cd9EYP68WjvsZpQTlF-GQ" target="_blank">
+                    Fennel Seeds (Saunf)
+                </a>
+            </button>
+
+            <!-- Roasted Chana Dal — NEW -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/grocery-fried-gramchana-roasted-dal/prid/440035?srsltid=AfmBOop3hfKfErd3xnG8MLZq1IsU2o8V8c1p0Io4hBBcxqiUpQ3bNSK3" target="_blank">
+                    Roasted Chana Dal (binding)
+                </a>
+            </button>
+
+            <!-- Salt — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/tata-salt-vacuum-evaporated-iodised/prid/105?srsltid=AfmBOor1fqU4Wwj8bb49x4IcSy9kFnn2V-aHLlxX6x1Bxquvbc8ukWgB" target="_blank">
+                    Salt
+                </a>
+            </button>
+
+            <!-- Oil — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/figaro-extra-virgin-olive-oil/prid/9349" target="_blank">
+                    Oil (for deep frying)
+                </a>
+            </button>
+
+            <!-- Fresh Coriander — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/parsley/prid/443554?srsltid=AfmBOoogKH0bqy4ALB3rxlJKLeizg67ZXXwsmLhx9pAdCz3MZYIVcKgX" target="_blank">
+                    Fresh Coriander
+                </a>
+            </button>
+
+            <!-- Lemon — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/lemon/prid/470482?srsltid=AfmBOoph42OVPpWusU0oud0TGsds-Ny8Z3fgMX6_TNYXpaNzUdUCKq47" target="_blank">
+                    Lemon (to serve)
+                </a>
+            </button>
+
+        </div>
+    </div>
+
+    <!-- STEPS -->
+    <div class="card">
+        <h3>Steps (Click for details)</h3>
+
+        <div class="step" onclick="toggleDetail(0)">1. Prepare the Mutton Keema</div>
+        <div class="step-detail">If using whole mutton, mince it finely in a grinder or ask your butcher for keema. The mince should be fine but not a paste — a slightly coarse texture gives the balls a better bite. Remove any excess fat or sinew before mincing for a cleaner flavour.</div>
+
+        <div class="step" onclick="toggleDetail(1)">2. Grind the Spice Mix</div>
+        <div class="step-detail">In a dry grinder, coarsely grind the fennel seeds and roasted chana dal into a rough powder. This mixture acts as the key binding and flavouring agent for Kola Urundai, giving it the distinct South Indian taste. Do not grind too fine — a slightly gritty texture helps bind the balls.</div>
+
+        <div class="step" onclick="toggleDetail(2)">3. Mix the Kola</div>
+        <div class="step-detail">In a large bowl, combine the mutton keema with finely chopped onion, garlic, red chilli powder, black pepper, cumin powder, garam masala, salt and the ground fennel-chana dal mix. Add a generous handful of fresh coriander. Mix everything thoroughly with your hands until well combined. The mixture should be firm enough to roll — if too wet, add a little more ground chana dal.</div>
+
+        <div class="step" onclick="toggleDetail(3)">4. Shape & Rest</div>
+        <div class="step-detail">Wet your palms lightly with water. Take a small portion of the mixture (about the size of a large marble) and roll firmly between your palms into a smooth, compact ball. Repeat with the remaining mixture. Place the balls on a plate and refrigerate for 20–30 minutes — this firms them up and prevents them from breaking during frying.</div>
+
+        <div class="step" onclick="toggleDetail(4)">5. Deep Fry & Serve</div>
+        <div class="step-detail">Heat oil in a deep pan to 170–180°C. Gently slide in the mutton balls in small batches — do not overcrowd. Fry for 4–5 minutes, turning occasionally, until deep golden brown and crispy all over. The inside should be fully cooked through. Drain on paper towels. Serve hot with a squeeze of lemon and fresh coriander. Kola Urundai is best eaten immediately while crispy outside and juicy inside.</div>
+
+    </div>
+
+</div>
+
+<div class="footer">
+    <h3>Order Ingredients</h3>
+    <div class="shop-links">
+        <a href="https://www.amazon.in" class="amazon">Amazon</a>
+        <a href="https://www.flipkart.com" class="flipkart">Flipkart</a>
+        <a href="https://www.bigbasket.com" class="bigbasket">BigBasket</a>
+        <a href="https://blinkit.com" class="blinkit">Blinkit</a>
+        <a href="https://www.zeptonow.com" class="zepto">Zepto</a>
+        <a href="https://www.swiggy.com/instamart" class="instamart">Instamart</a>
+    </div>
+</div>
+
+<!-- YOUTUBE LINK -->
+<div class="card" style="max-width:1000px; margin: 0 auto 20px;">
+    <h3>Watch Recipe 🎥</h3>
+    <a href="https://www.youtube.com/watch?v=cwREgyOT0zs" target="_blank" class="yt-btn">
+        ▶ Watch Mutton Kola Urundai Recipe on YouTube
+    </a>
+</div>
+
+<script>
+function goHome() {
+    window.location.href = "/home/pratham/cookmate_wdl/initials/cookmate_f.html ";
+}
+
+function goBack() {
+    window.location.href = "/home/pratham/cookmate_wdl/nonvegg/south indian non veg.html";
+}
+
+function toggleDropdown() {
+    let d = document.getElementById("dropdown");
+    d.style.display = d.style.display === "block" ? "none" : "block";
+}
+
+function toggleDetail(index) {
+    let details = document.getElementsByClassName("step-detail");
+    details[index].style.display =
+        details[index].style.display === "block" ? "none" : "block";
+}
+
+/* TYPEWRITER */
+const text = "Mutton Kola Urundai are crispy deep-fried mutton balls from the Chettinad cuisine of Tamil Nadu, made from finely minced mutton blended with fennel, chana dal and bold South Indian spices. Golden and crunchy on the outside with a juicy, intensely spiced interior, they are one of the most iconic and beloved non-vegetarian snacks of South India.";
+let i = 0;
+
+function typeWriter() {
+    if (i < text.length) {
+        document.getElementById("typeText").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 25);
+    }
+}
+typeWriter();
+</script>
+
+</body>
+</html>

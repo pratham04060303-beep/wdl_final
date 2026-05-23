@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>South Indian Food</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body, html {
+    height: 100%;
+}
+
+/* Background video */
+video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+/* Overlay */
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: -1;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    color: white;
+}
+
+
+.back-btn {
+    padding: 10px 15px;
+    border: none;
+    background: orange;
+    cursor: pointer;
+    border-radius: 5px;
+    
+}
+.home-btn {
+    padding: 10px 15px;
+    border: none;
+    background: orange;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+}
+.home-btn:hover {
+    transform: scale(1.05);
+}
+
+.back-btn:hover {
+    transform: scale(1.05);
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 10px; /* space between buttons */
+}
+
+/* Grid layout */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Each tile */
+.tile {
+     width: 220px;
+    height: 180px;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Background image */
+.tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Dark overlay on tile */
+.tile::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    top: 0;
+    left: 0;
+}
+
+/* Cuisine name */
+.tile span {
+    position: absolute;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    z-index: 2;
+    margin-left: 40%;
+    bottom: 20%;
+    left: 100%;
+    transform: translate(-50%, -50%);
+}
+
+/* Hover effect */
+.tile:hover {
+    transform: scale(1.05);
+}
+/* HERO SECTION (South Indian banner) */
+.SouthIndian {
+    position: relative;
+    height: 300px;
+    background: url("https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=1200&q=80") center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.SouthIndian::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    top: 0;
+    left: 0;
+}
+
+.SouthIndian-content {
+    position: relative;
+    color: white;
+    text-align: center;
+    z-index: 2;
+}
+
+.SouthIndian-content h1 {
+    font-size: 32px;
+}
+
+.SouthIndian-content p {
+    font-size: 14px;
+    margin-top: 10px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.grid {
+    display: grid;
+    grid-auto-flow: column;              /* horizontal */
+    grid-template-rows: repeat(2, 180px); /* 2 rows */
+    gap: 20px;
+    padding: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+}
+
+/* hide scrollbar */
+.grid::-webkit-scrollbar {
+    display: none;
+}
+
+/* TILE */
+.tile {
+    min-width: 220px;  /* important for horizontal layout */
+    height: 180px;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+}
+
+/* Text on image */
+.tile span {
+    position: absolute;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    z-index: 2;
+    bottom: 10px;
+    left: 10px;
+}
+.scroll-wrapper {
+    position: relative;
+}
+
+.scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: orange;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.left-btn { left: 5px; }
+.right-btn { right: 5px; }
+</style>
+</head>
+
+<body>
+
+<!-- Background Video -->
+<video autoplay muted loop>
+    <source src="/home/pratham/cookmate_wdl/cookmate_images/bg.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
+<!-- Header -->
+<div class="header">
+    <h2>Choose South Indian Dish 🌱</h2>
+
+    <div class="nav-buttons">
+        <button class="back-btn" onclick="goBack()">⬅ Back</button>
+        <button class="home-btn" onclick="goback()">⌘ Home</button>
+    </div>
+</div>
+
+<div class="SouthIndian">
+    <div class="SouthIndian-content">
+        <h1>South Indian Cuisine 🌱</h1>
+        <p>
+            South Indian food is celebrated for its light, nutritious, and flavourful dishes made with
+            rice, lentils, coconut, and aromatic spices. From crispy dosas and fluffy idlis to tangy
+            sambar and refreshing chutneys, it offers a perfect harmony of taste and tradition.
+        </p>
+    </div>
+</div>
+
+<!-- Grid -->
+<div class="scroll-wrapper">
+
+<button class="scroll-btn left-btn" onclick="scrollLeft()">◀</button>
+
+<div class="grid" id="foodGrid">
+
+    <!-- 12 Tiles -->
+
+    <div class="tile" onclick="go('Masala Dosa.html')">
+        <img src="https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=400&q=80" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Masala_dosa.jpg/640px-Masala_dosa.jpg'">
+        <span>Masala Dosa</span>
+    </div>
+
+    <div class="tile" onclick="go('Idli Sambar.html')">
+        <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=400&q=80" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Idli_sambar.jpg/640px-Idli_sambar.jpg'">
+        <span>Idli Sambar</span>
+    </div>
+
+    <div class="tile" onclick="go('Vada.html')">
+        <img src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=400&q=80">
+        <span>Medu Vada</span>
+    </div>
+
+    <div class="tile" onclick="go('Uttapam.html')">
+        <img src="https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=400&q=80">
+        <span>Uttapam</span>
+    </div>
+
+    <div class="tile" onclick="go('Pongal.html')">
+        <img src="https://images.unsplash.com/photo-1505253304499-671c55fb57fe?w=400&q=80">
+        <span>Ven Pongal</span>
+    </div>
+
+    <div class="tile" onclick="go('Rasam.html')">
+        <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400&q=80" >
+        <span>Rasam</span>
+    </div>
+
+    <div class="tile" onclick="go('Coconut Chutney.html')">
+        <img src="https://images.unsplash.com/photo-1600803907087-f56d462fd26b?w=400&q=80" >
+        <span>Coconut Chutney</span>
+    </div>
+
+    <div class="tile" onclick="go('Curd Rice.html')">
+        <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400&q=80">
+        <span>Curd Rice</span>
+    </div>
+
+    <div class="tile" onclick="go('Appam.html')">
+        <img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=400&q=80">
+        <span>Appam</span>
+    </div>
+
+    <div class="tile" onclick="go('Bisibelebath.html')">
+        <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400&q=80" >
+        <span>Bisibelebath</span>
+    </div>
+
+    <div class="tile" onclick="go('Payasam.html')">
+        <img src="https://images.unsplash.com/photo-1666364460742-e36ee618e5d6?w=400&q=80">
+        <span>Payasam</span>
+    </div>
+
+    <div class="tile" onclick="go('Filter Coffee.html')">
+        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&q=80">
+        <span>Filter Coffee</span>
+    </div>
+
+</div>
+
+<button class="scroll-btn right-btn" onclick="scrollRight()">▶</button>
+
+</div>
+
+<script>
+function goback() {
+        window.location.href = "/home/pratham/cookmate_wdl/initials /cookmate_f.html";
+    }
+function goBack() {
+    window.location.href = "/home/pratham/cookmate_wdl/initials /veg.html";
+}
+
+function go(page) {
+    window.location.href = page;
+}
+
+function scrollLeft() {
+    document.getElementById('foodGrid').scrollBy({ left: -500, behavior: 'smooth' });
+}
+
+function scrollRight() {
+    document.getElementById('foodGrid').scrollBy({ left: 500, behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>

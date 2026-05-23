@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Continental Non-Veg Food</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body, html {
+    height: 100%;
+}
+
+/* Background video */
+video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+/* Overlay */
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: -1;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    color: white;
+}
+
+
+.back-btn {
+    padding: 10px 15px;
+    border: none;
+    background: orange;
+    cursor: pointer;
+    border-radius: 5px;
+    
+}
+.home-btn {
+    padding: 10px 15px;
+    border: none;
+    background: orange;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+}
+.home-btn:hover {
+    transform: scale(1.05);
+}
+
+.back-btn:hover {
+    transform: scale(1.05);
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 10px; /* space between buttons */
+}
+
+/* Grid layout */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Each tile */
+.tile {
+     width: 220px;
+    height: 180px;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Background image */
+.tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Dark overlay on tile */
+.tile::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    top: 0;
+    left: 0;
+}
+
+/* Cuisine name */
+.tile span {
+    position: absolute;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    z-index: 2;
+    margin-left: 40%;
+    bottom: 20%;
+    left: 100%;
+    transform: translate(-50%, -50%);
+}
+
+/* Hover effect */
+.tile:hover {
+    transform: scale(1.05);
+}
+
+/* HERO SECTION (Italian Non-Veg banner) */
+.Continental {
+    position: relative;
+    height: 300px;
+    background: url("https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?w=1200&q=80") center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Continental::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    top: 0;
+    left: 0;
+}
+
+.Continental-content {
+    position: relative;
+    color: white;
+    text-align: center;
+    z-index: 2;
+}
+
+.Continental-content h1 {
+    font-size: 32px;
+}
+
+.Continental-content p {
+    font-size: 14px;
+    margin-top: 10px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.grid {
+    display: grid;
+    grid-auto-flow: column;              /* horizontal */
+    grid-template-rows: repeat(2, 180px); /* 2 rows */
+    gap: 20px;
+    padding: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+}
+
+/* hide scrollbar */
+.grid::-webkit-scrollbar {
+    display: none;
+}
+
+/* TILE */
+.tile {
+    min-width: 220px;  /* important for horizontal layout */
+    height: 180px;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+}
+
+/* Text on image */
+.tile span {
+    position: absolute;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    z-index: 2;
+    bottom: 10px;
+    left: 10px;
+}
+.scroll-wrapper {
+    position: relative;
+}
+
+.scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: orange;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.left-btn { left: 5px; }
+.right-btn { right: 5px; }
+</style>
+</head>
+
+<body>
+
+<!-- Background Video -->
+<video autoplay muted loop>
+    <source src="/home/pratham/cookmate_wdl/cookmate_images/bg.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
+<!-- Header -->
+<div class="header">
+    <h2>Choose Continental Non-Veg Dish 🍗</h2>
+
+    <div class="nav-buttons">
+        <button class="back-btn" onclick="goBack()">⬅ Back</button>
+        <button class="home-btn" onclick="goback()">⌘ Home</button>
+    </div>
+</div>
+
+<div class="Continental">
+    <div class="Continental-content">
+        <h1>Continental Non-Veg Cuisine 🍝</h1>
+        <p>
+            Experience the elegance of Continental non-vegetarian cooking. From rich meat
+            lasagnas and creamy chicken pastas to wood-fired pizzas loaded with toppings
+            and delicate prawn risottos — a true celebration of Continental flavour and tradition.
+        </p>
+    </div>
+</div>
+
+<!-- Grid -->
+<div class="scroll-wrapper">
+
+<button class="scroll-btn left-btn" onclick="scrollLeft()">◀</button>
+
+<div class="grid" id="foodGrid">
+
+    <!-- 12 Tiles -->
+
+    <div class="tile" onclick="go('/home/pratham/cookmate_wdl/nonvegg/Continental  Non Veg/Chicken Stroganoff.html')">
+        <img src="https://lifemadesimplebakes.com/wp-content/uploads/2019/09/chicken-stroganoff-square-1200.jpg">
+        <span> Chicken Stroganoff</span>
+    </div>
+
+   
+
+    <div class="tile" onclick="go('/home/pratham/cookmate_wdl/nonvegg/Continental  Non Veg/creamy Chicken Fricassee.html')">
+        <img src="https://cdn.apartmenttherapy.info/image/upload/f_jpg,q_auto:eco,c_fill,g_auto,w_1500,ar_1:1/k%2FPhoto%2FRecipes%2F2024-09-chicken-fricasse%2Fchicken-fricasse-422">
+        <span> creamy Chicken Fricassee</span>
+    </div>
+
+   
+
+    <div class="tile" onclick="go('/home/pratham/cookmate_wdl/nonvegg/Continental  Non Veg/Chicken Cacciatore.html')">
+        <img src="https://www.tasteofhome.com/wp-content/uploads/2018/01/Chicken-Cacciatore_EXPS_FT24_2599_ST_0223_2.jpg">
+        <span>Chicken Cacciatore</span>
+    </div>
+
+    <div class="tile" onclick="go('/home/pratham/cookmate_wdl/nonvegg/Continental  Non Veg/Chicken Piccata.html')">
+        <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=400&q=80">
+        <span>Chicken Piccata</span>
+    </div>
+
+    
+
+    <div class="tile" onclick="go('/home/pratham/cookmate_wdl/nonvegg/Continental  Non Veg/Chicken Carbonara.html')">
+        <img src="https://images.unsplash.com/photo-1612874742237-6526221588e3?w=400&q=80" >
+        <span>Chicken Carbonara</span>
+    </div>
+
+    
+
+    
+
+
+
+    
+
+</div>
+
+<button class="scroll-btn right-btn" onclick="scrollRight()">▶</button>
+
+</div>
+
+<script>
+function goback() {
+        window.location.href = "/home/pratham/cookmate_wdl/initials /cookmate_f.html";
+    }
+function goBack() {
+    window.location.href = "/home/pratham/cookmate_wdl/initials /nonveg.html";
+}
+
+function go(page) {
+    window.location.href = page;
+}
+
+function scrollLeft() {
+    document.getElementById('foodGrid').scrollBy({ left: -500, behavior: 'smooth' });
+}
+
+function scrollRight() {
+    document.getElementById('foodGrid').scrollBy({ left: 500, behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>

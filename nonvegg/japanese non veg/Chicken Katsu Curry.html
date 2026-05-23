@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Chicken Katsu Curry - CookMate</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+video {
+    position: fixed;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: -1;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    color: white;
+}
+
+.nav-buttons button {
+    background: orange;
+    border: none;
+    padding: 10px 15px;
+    margin-left: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.nav-buttons button:hover {
+    transform: scale(1.05);
+}
+
+.hero {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.hero img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.hero-text {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.321);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+#typeText {
+    border-right: 2px solid white;
+    white-space: normal;
+    word-wrap: break-word;
+    line-height: 1.6;
+}
+
+.dropdown-btn {
+    width: 100%;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.385);
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    margin-top: 10px;
+}
+
+.ing-btn {
+    margin: 5px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 20px;
+    background: orange;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.ing-btn:hover {
+    background: #ff6600;
+    transform: scale(1.05);
+}
+
+.ing-btn a {
+    color: white;
+    text-decoration: none;
+}
+
+.step {
+    padding: 10px;
+    background: rgba(255,255,255,0.1);
+    margin-bottom: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.step:hover {
+    background: rgba(255, 255, 255, 0.458);
+}
+
+.step-detail {
+    display: none;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: rgba(221, 218, 218, 0.39);
+    border-radius: 6px;
+}
+
+.footer {
+    text-align: center;
+    padding: 20px;
+}
+
+.shop-links a {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px 15px;
+    border-radius: 20px;
+    color: white;
+    text-decoration: none;
+}
+
+.yt-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background: red;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.yt-btn:hover {
+    background: darkred;
+    transform: scale(1.05);
+}
+
+.amazon   { background: #ff9900; }
+.flipkart { background: #2874f0; }
+.bigbasket{ background: #84c225; }
+.blinkit  { background: #f7d000; color: black; }
+.zepto    { background: #6f00ff; }
+.instamart{ background: #fc8019; }
+</style>
+</head>
+
+<body>
+
+<video autoplay muted loop>
+    <source src="/home/pratham/cookmate_wdl/cookmate_images/bg.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
+<div class="header">
+    <h2>🍛 Chicken Katsu Curry</h2>
+    <div class="nav-buttons">
+        <button onclick="goBack()">⬅ Back</button>
+        <button onclick="goHome()">⌘ Home</button>
+    </div>
+</div>
+
+<div class="hero">
+    <img src="https://www.foodforfitness.co.uk/wp-content/uploads/2026/03/Chicken_Katsu_Feature_1.jpg">
+    <div class="hero-text">
+        <h1>Chicken Katsu Curry</h1>
+        <p>Restaurant Style Recipe</p>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- ABOUT -->
+    <div class="card">
+        <h3>About Dish</h3>
+        <p id="typeText"></p>
+    </div>
+
+    <!-- INGREDIENTS -->
+    <div class="card">
+        <h3>Ingredients</h3>
+        <button class="dropdown-btn" onclick="toggleDropdown()">Show Ingredients ⬇</button>
+        <div class="dropdown-content" id="dropdown">
+
+            <!-- Chicken — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/abis-pro-chicken-curry-cut/prid/690207" target="_blank">
+                    Chicken Breast
+                </a>
+            </button>
+
+            <!-- Panko Breadcrumbs — NEW -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/abbies-panko-bread-crumbs/prid/476911?srsltid=AfmBOop0-W6iMt1fn19y2XzUBU3MMb6pWCwd8ackkRXdRxEbKsj1N4TR" target="_blank">
+                    Panko Breadcrumbs
+                </a>
+            </button>
+
+            <!-- Japanese Curry Roux — NEW -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/sb-hot-japanese-curry-mix/prid/512856?srsltid=AfmBOoqlJ2cnkQZfQK6oHZUTaFlO68kFJiB6Q4rphHSGn4ic-wuDy37H" target="_blank">
+                    Japanese Curry Roux (S&B Golden Curry)
+                </a>
+            </button>
+
+            <!-- Onion — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/onion/prid/391306" target="_blank">
+                    Onion
+                </a>
+            </button>
+
+            <!-- Garlic — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/hommade-garlic-paste/prid/35025" target="_blank">
+                    Garlic
+                </a>
+            </button>
+
+            <!-- Olive Oil — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/figaro-extra-virgin-olive-oil/prid/9349" target="_blank">
+                    Oil (for frying)
+                </a>
+            </button>
+
+            <!-- Soy Sauce — reused from Fried Rice -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/kikkoman-naturally-brewed-soy-sauce/prid/20089?srsltid=AfmBOoqJt99EsS2V33FIvEhRVRrSB17zIhJdqcMXh3S2jJDL5xZUMH0m" target="_blank">
+                    Soy Sauce
+                </a>
+            </button>
+
+            <!-- Salt — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/tata-salt-vacuum-evaporated-iodised/prid/105?srsltid=AfmBOor1fqU4Wwj8bb49x4IcSy9kFnn2V-aHLlxX6x1Bxquvbc8ukWgB" target="_blank">
+                    Salt
+                </a>
+            </button>
+
+            <!-- Black Pepper — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/prn/catch-black-peppercornskali-mirch/prid/187862" target="_blank">
+                    Black Pepper
+                </a>
+            </button>
+
+            <!-- Rice — reused -->
+            <button class="ing-btn">
+                <a href="https://blinkit.com/cn/rice-rice-products/cid/175/1935?srsltid=AfmBOopjxfapPOr2eJ7Htjlm9CwTECtpYDvI-6jo7Zfh_CLAm_A8SUyQ" target="_blank">
+                    Steamed Rice (to serve)
+                </a>
+            </button>
+
+        </div>
+    </div>
+
+    <!-- STEPS -->
+    <div class="card">
+        <h3>Steps (Click for details)</h3>
+
+        <div class="step" onclick="toggleDetail(0)">1. Prepare the Chicken</div>
+        <div class="step-detail">Place chicken breasts on a chopping board. Cover with cling film and pound with a rolling pin or meat mallet to an even thickness of about 1.5 cm. Season both sides well with salt, black pepper and a splash of soy sauce. Let it sit for 10 minutes to absorb the seasoning.</div>
+
+        <div class="step" onclick="toggleDetail(1)">2. Bread the Chicken (Katsu)</div>
+        <div class="step-detail">Set up a breading station: one plate of plain flour, one bowl of beaten egg, one plate of panko breadcrumbs. Coat each chicken breast first in flour (shake off excess), then dip in egg, then press firmly into panko breadcrumbs on both sides until fully and evenly coated. Rest for 5 minutes so the coating sticks.</div>
+
+        <div class="step" onclick="toggleDetail(2)">3. Fry the Katsu</div>
+        <div class="step-detail">Heat oil in a wide pan over medium-high heat. The oil should be about 1 cm deep. Carefully place the breaded chicken in the pan and fry for 4–5 minutes per side until deep golden brown and crispy. The chicken should be fully cooked through with no pink inside. Drain on paper towels and rest for 2 minutes before slicing.</div>
+
+        <div class="step" onclick="toggleDetail(3)">4. Make the Curry Sauce</div>
+        <div class="step-detail">In a separate saucepan, heat a little oil over medium heat. Add chopped onion and garlic and cook for 4–5 minutes until soft and lightly golden. Add 400 ml of water and bring to a boil. Break in the Japanese curry roux blocks and stir until completely dissolved. Simmer on low heat for 8–10 minutes, stirring often, until the sauce is thick, glossy and rich.</div>
+
+        <div class="step" onclick="toggleDetail(4)">5. Slice & Serve</div>
+        <div class="step-detail">Slice the fried chicken katsu diagonally into thick strips. Place over a mound of steamed rice. Ladle the Japanese curry sauce generously over the chicken and rice. Serve immediately while the katsu is still crispy. Garnish with pickled ginger or fresh coriander if available.</div>
+
+    </div>
+
+</div>
+
+<div class="footer">
+    <h3>Order Ingredients</h3>
+    <div class="shop-links">
+        <a href="https://www.amazon.in" class="amazon">Amazon</a>
+        <a href="https://www.flipkart.com" class="flipkart">Flipkart</a>
+        <a href="https://www.bigbasket.com" class="bigbasket">BigBasket</a>
+        <a href="https://blinkit.com" class="blinkit">Blinkit</a>
+        <a href="https://www.zeptonow.com" class="zepto">Zepto</a>
+        <a href="https://www.swiggy.com/instamart" class="instamart">Instamart</a>
+    </div>
+</div>
+
+<!-- YOUTUBE LINK -->
+<div class="card" style="max-width:1000px; margin: 0 auto 20px;">
+    <h3>Watch Recipe 🎥</h3>
+    <a href="https://www.youtube.com/watch?v=WfRbviqgiSA" target="_blank" class="yt-btn">
+        ▶ Watch Chicken Katsu Curry Recipe on YouTube
+    </a>
+</div>
+
+<script>
+function goBack() {
+    window.location.href = "/home/pratham/cookmate_wdl/nonvegg/japanese_nonveg.html";
+}
+function goHome() {
+    window.location.href = "/home/pratham/cookmate_wdl/initials/cookmate_f.html ";
+}
+
+function toggleDropdown() {
+    let d = document.getElementById("dropdown");
+    d.style.display = d.style.display === "block" ? "none" : "block";
+}
+
+function toggleDetail(index) {
+    let details = document.getElementsByClassName("step-detail");
+    details[index].style.display =
+        details[index].style.display === "block" ? "none" : "block";
+}
+
+/* TYPEWRITER */
+const text = "Chicken Katsu Curry is a beloved Japanese comfort dish featuring a crispy golden panko-breaded chicken cutlet served over fluffy steamed rice and smothered in a thick, mildly spiced Japanese curry sauce. The contrast of crunchy katsu against the rich, velvety curry makes it one of the most satisfying and iconic dishes in Japanese cuisine.";
+let i = 0;
+
+function typeWriter() {
+    if (i < text.length) {
+        document.getElementById("typeText").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 25);
+    }
+}
+typeWriter();
+</script>
+
+</body>
+</html>
