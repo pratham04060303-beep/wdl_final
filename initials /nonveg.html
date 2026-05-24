@@ -148,7 +148,7 @@ video { position: fixed; top: 0; left: 0; min-width: 100%; min-height: 100%; obj
 <body>
 
 <video autoplay muted loop>
-    <source src="/home/pratham/cookmate_wdl/cookmate_images/bg.mp4" type="video/mp4">
+    <source src="../wdl_final/cookmate_images/bg.mp4" type="video/mp4">
 </video>
 <div class="overlay"></div>
 
@@ -300,7 +300,7 @@ function goBack()  { window.location.href = "cookmate_f.html"; }
 function go(page)  { window.location.href = page; }
 
 // ── Random Recipe (≤10 lines) ────────────────────────────────────────
-const recipes = ["/home/pratham/cookmate_wdl/nonvegg/Indian Non-Veg.html","/home/pratham/cookmate_wdl/nonvegg/Chinese Non-Veg.html","/home/pratham/cookmate_wdl/nonvegg/Italian Non-Veg.html","/home/pratham/cookmate_wdl/nonvegg/Mexican Non-Veg.html","/home/pratham/cookmate_wdl/nonvegg/Thai Non-Veg.html","/home/pratham/cookmate_wdl/nonvegg/japanese non veg .html","/home/pratham/cookmate_wdl/nonvegg/south indian non veg.html","/home/pratham/cookmate_wdl/nonvegg/streetfood non veg.html","Continental  Non Veg.html"];
+const recipes = ["../wdl_final/cookmate_wdl/nonvegg/Indian Non-Veg.html","../wdl_final/cookmate_wdl/nonvegg/Chinese Non-Veg.html","../wdl_final/cookmate_wdl/nonvegg/Italian Non-Veg.html","../wdl_final/cookmate_wdl/nonvegg/Mexican Non-Veg.html","../wdl_final/cookmate_wdl/nonvegg/Thai Non-Veg.html","../wdl_final/cookmate_wdl/nonvegg/japanese non veg .html","../wdl_final/cookmate_wdl/nonvegg/south indian non veg.html","../wdl_final/cookmate_wdl/nonvegg/streetfood non veg.html","../wdl_final/cookmate_wdl/nonvegg/Continental  Non Veg.html"];
 function goRandom() { go(recipes[Math.floor(Math.random() * recipes.length)]); }
 
 // ── Difficulty & Time Filter ─────────────────────────────────────────
